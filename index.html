@@ -10,7 +10,7 @@
 <body>
   <canvas id="canvas-bg"></canvas>
   <header class="header">
-    <a href="#home" class="logo">Bienvenue</a>
+    <a href="#home" class="logo">Bienvenue !</a>
     <button class="menu-toggle" id="menu-icon" aria-label="Ouvrir le menu">
       <i class='bx bx-menu'></i>
     </button>
@@ -46,6 +46,13 @@
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-17,148.63-10.09,267.94,8.98,119.57,19.07,177,49,248.45,69.1,30.22,8.37,59,12.42,87.38,15.74V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
       </svg>
+    </div>
+    <div class="home-img">
+        <div class="glow-wrap">
+            <div class="glow"></div>
+        </div>
+        <!-- Remplacez cette image par la vôtre. Idéalement une image sans fond (PNG) -->
+        <img src="sans.png" alt="Image de profil">
     </div>
   </section>
   <section class="about" id="about">
@@ -206,7 +213,7 @@
     </div>
     <!-- Carte 9: Next.js -->
     <div class="card" style="--index: 9; --color-card: 0, 0, 0;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg" alt="Next.js">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs.svg" alt="Next.js">
         <span>Next.js</span>
     </div>
 </div>
@@ -246,23 +253,61 @@
       </div>
     </div>
   </section>
-  <section class="experiences" id="experiences">
-    <h2 class="heading">Mes <span>Expériences</span></h2>
-    <div class="education-row">
-      <div class="education-column">
-        <h3 class="title">Expériences Professionnelles</h3>
-        <div class="education-box">
-          <div class="education-content">
-            <div class="content">
-              <div class="year"><i class="bx bxs-calendar"></i> 30/06/2024 - 30/07/2024</div>
-              <h3>Stage en société RENTED</h3>
-              <p>Développement d'un système complet de gestion de location des chambres incluant réservation, gestion des chambres, utilisateurs et paiements. Technologies utilisées : Golang, Gin, PostgresSQL, Docker, Postman.</p>
+<!-- NOUVELLE TIMELINE AVEC ICÔNES -->
+<section class="timeline-section" id="experiences">
+    <h2 class="heading">Mon <span>Parcours</span></h2>
+    <div class="timeline-items">
+
+        <!-- Item 1: Stage -->
+        <div class="timeline-item">
+            <div class="timeline-icon">
+                <i class='bx bxs-briefcase'></i>
             </div>
-          </div>
+            <div class="timeline-content">
+                <span class="timeline-content-date">Juillet 2024</span>
+                <h3>Stage - RENTED</h3>
+                <p>Développement d'un système de gestion de location de chambres (Golang, Gin, PostgreSQL, Docker). Création de l'API REST, gestion des bases de données et déploiement.</p>
+            </div>
         </div>
-      </div>
+
+        <!-- Item 2: Début Cycle Ingénieur -->
+        <div class="timeline-item">
+            <div class="timeline-icon">
+                <i class='bx bxs-rocket'></i>
+            </div>
+            <div class="timeline-content right">
+                <span class="timeline-content-date">Septembre 2023</span>
+                <h3>Début du Cycle Ingénieur</h3>
+                <p>Intégration du cycle d'ingénieur en Génie Informatique à la FST Errachidia. Focus sur l'algorithmique avancée, l'architecture logicielle et les systèmes distribués.</p>
+            </div>
+        </div>
+
+        <!-- Item 3: DEUST -->
+        <div class="timeline-item">
+            <div class="timeline-icon">
+                <i class='bx bxs-graduation'></i>
+            </div>
+            <div class="timeline-content">
+                <span class="timeline-content-date">Juin 2023</span>
+                <h3>DEUST MIP</h3>
+                <p>Obtention du Diplôme d'Études Universitaires Scientifiques et Techniques en Mathématiques, Informatique et Physique.</p>
+            </div>
+        </div>
+
+        <!-- Item 4: Baccalauréat -->
+        <div class="timeline-item">
+            <div class="timeline-icon">
+                <i class='bx bxs-award'></i>
+            </div>
+            <div class="timeline-content right">
+                <span class="timeline-content-date">Juin 2021</span>
+                <h3>Baccalauréat Sciences Maths</h3>
+                <p>Obtention du baccalauréat avec mention, ouvrant la voie aux études supérieures en sciences et techniques.</p>
+            </div>
+        </div>
+
     </div>
-  </section>
+</section>
   <section class="projets" id="projets">
     <h2 class="heading">Mes <span>Projets</span></h2>
     <div class="projets-container">
@@ -370,7 +415,7 @@
       <p>©2025 by M.MAHROUCH</p>
     </div>
     <div class="footer-icontop">
-      <a href="#"><i class="bx bx-up-arrow-alt"></i></a>
+<a href="#" id="scrollTopBtn"><i class="bx bx-up-arrow-alt"></i></a>
     </div>
   </footer>
   <script src="script.js"></script>
