@@ -204,3 +204,15 @@ window.addEventListener('scroll', () => {
         scrollTopBtn.classList.remove('visible');
     }
 });
+// --- SCRIPT POUR LE DÉFILEMENT INFINI SUR MOBILE ---
+document.addEventListener('DOMContentLoaded', () => {
+    const skillsInner = document.querySelector('.animated-skills .inner');
+    if (skillsInner) {
+        const skillsContent = Array.from(skillsInner.children);
+        skillsContent.forEach(item => {
+            const duplicatedItem = item.cloneNode(true);
+            duplicatedItem.setAttribute('aria-hidden', true); // Bon pour l'accessibilité
+            skillsInner.appendChild(duplicatedItem);
+        });
+    }
+});
