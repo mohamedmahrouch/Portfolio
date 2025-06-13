@@ -195,3 +195,12 @@ if (canvas) {
     });
 }
 
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) { // Le bouton apparaît après 400px de scroll
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
+    }
+});
