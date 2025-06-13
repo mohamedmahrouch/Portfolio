@@ -784,6 +784,7 @@ section {
 .footer-text p {
   font-size: 1.6rem;
 }
+
 .footer-icontop a {
   display: inline-flex;
   justify-content: center;
@@ -800,7 +801,22 @@ section {
   font-size: 2.4rem;
   color: var(--bg-color);
 }
+.footer-icontop a {
+  /* ... vos styles actuels ... */
+  position: fixed; /* Important pour le positionner par rapport à la page */
+  bottom: 2rem;
+  right: 2rem;
+  opacity: 0;
+  pointer-events: none; /* Non cliquable quand il est invisible */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px); /* Il part d'un peu plus bas */
+}
 
+.footer-icontop a.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -885,5 +901,402 @@ section {
   .footer p {
     text-align: center;
     margin-top: 2rem;
+  }
+}/* --- RESPONSIVE DESIGN POUR LES COMPÉTENCES ANIMÉES --- */
+
+/* --- Version Tablette : On réduit le carrousel --- */
+@media (max-width: 991px) {
+  .animated-skills .card {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
+  }
+  .animated-skills .card:hover {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
+  }
+}
+
+/* --- Version Téléphone : On passe à un scroll horizontal --- */
+@media (max-width: 768px) {
+  .animated-skills .heading {
+    margin-bottom: 4rem;
+  }
+  .animated-skills .container {
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  /* On transforme le conteneur en zone de scroll */
+  .animated-skills .wrapper {
+    perspective: none; /* Plus besoin de 3D */
+    overflow-x: auto; /* Active le scroll horizontal */
+    padding: 0 2rem 2rem 2rem; /* Espace pour le scroll et l'esthétique */
+    -ms-overflow-style: none;  /* Cache la barre de scroll sur IE/Edge */
+    scrollbar-width: none;  /* Cache la barre de scroll sur Firefox */
+  }
+  /* Cache la barre de scroll sur Chrome/Safari/Opera */
+  .animated-skills .wrapper::-webkit-scrollbar { 
+    display: none;
+  }
+
+  /* On transforme l'anneau en une simple ligne flexible */
+  .animated-skills .inner {
+    position: static;
+    width: max-content; /* Pour que la ligne s'étende autant que nécessaire */
+    transform-style: flat;
+    animation: none; /* On arrête l'animation de rotation */
+    display: flex;
+    gap: 2rem;
+  }
+
+  /* On réinitialise complètement le style des cartes */
+  .animated-skills .card {
+    position: static;
+    transform: none !important; /* !important est nécessaire pour écraser le style en ligne */
+    width: 18rem;
+    height: 18rem;
+    border-radius: 20px; /* On passe à un carré arrondi, plus joli en ligne */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* On définit un nouveau survol (hover) pour le mobile */
+  .animated-skills .card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
+  }
+
+  /* On ajuste la taille du contenu des cartes */
+  .animated-skills .card img {
+    height: 40%;
+  }
+  .animated-skills .card span {
+    font-size: 1.6rem;
+  }
+  /* Dans la media query @media (max-width: 768px) */
+
+.home {
+  flex-direction: column-reverse; /* Place l'image en haut et le texte en bas */
+  gap: 2rem;
+}
+
+.home-content {
+  text-align: center; /* Centre le texte pour un meilleur affichage mobile */
+}
+
+.home-content .btn-box,
+.home-content .home-sci {
+  justify-content: center; /* Centre les boutons et les icônes sociales */
+}
+
+.home-img {
+  width: 25rem;
+  height: 25rem;
+  margin-top: 2rem;
+}
+}
+/* --- NOUVEAU RESPONSIVE DESIGN POUR LES COMPÉTENCES ANIMÉES --- */
+
+/* --- RESPONSIVE DESIGN FINAL POUR LES COMPÉTENCES ANIMÉES --- */
+
+/* --- Version Tablette : On réduit la profondeur du carrousel 3D --- */
+@media (max-width: 991px) {
+  .animated-skills .inner {
+    width: 25rem;
+    height: 25rem;
+  }
+  .animated-skills .card {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
+  }
+  .animated-skills .card:hover {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
+  }
+}
+
+/* --- Version Téléphone : On passe au défilement horizontal --- */
+@media (max-width: 768px) {
+  .animated-skills .heading {
+    margin-bottom: 4rem;
+  }
+  .animated-skills .container {
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  /* Le conteneur devient une zone de scroll */
+  .animated-skills .wrapper {
+    perspective: none;
+    overflow-x: auto;
+    padding: 0 2rem 2rem 2rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .animated-skills .wrapper::-webkit-scrollbar { 
+    display: none;
+  }
+
+  /* L'anneau 3D devient une ligne flexible */
+  .animated-skills .inner {
+    position: static;
+    width: max-content;
+    transform-style: flat;
+    animation: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  /* On réinitialise le style des cartes pour un affichage 2D */
+/* ANCIENNE RÈGLE (à remplacer) */
+/* NOUVEAU STYLE AVEC ANIMATION */
+.animated-skills .card {
+  position: static;
+  transform: none !important;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* On rend la carte invisible par défaut pour l'animation d'entrée */
+  opacity: 0;
+  /* On applique l'animation mais elle ne jouera que quand la classe .show-animate sera là */
+  animation: mobile-card-wave 0.5s ease-out forwards;
+  /* C'est la magie : on décale l'animation de chaque carte ! */
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+  /* Nouveau survol pour le mode 2D */
+  .animated-skills .card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
+  }
+
+  /* On ajuste la taille du contenu des cartes */
+  .animated-skills .card img {
+    height: 40%;
+  }
+  .animated-skills .card span {
+    font-size: 1.6rem;
+  }
+}
+
+/* --- Version Très Petits Téléphones : On affine le défilement horizontal --- */
+@media (max-width: 371px) {
+  /* On réduit la taille des cartes */
+  .animated-skills .card {
+    width: 15rem;
+    height: 15rem;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  /* On ajuste l'image */
+  .animated-skills .card img {
+    height: 45%;
+  }
+
+  /* On ajuste le texte */
+  .animated-skills .card span {
+    font-size: 1.4rem;
+  }
+  
+  /* On réduit l'espace entre les cartes */
+  .animated-skills .inner {
+    gap: 1.5rem;
+  }
+}
+
+
+/* --- NOUVEAUX STYLES POUR L'IMAGE DE LA SECTION HOME --- */
+
+/* On ajuste le conteneur principal de la section 'home' */
+.home {
+  justify-content: space-between; /* Pousse le texte à gauche et l'image à droite */
+  align-items: center;
+}
+
+/* Le conteneur de l'image */
+.home-img {
+  position: relative;
+  width: 40rem;
+  height: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* L'image elle-même */
+.home-img img {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  /* Animation de lévitation */
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+/* Le conteneur pour la lueur */
+.home-img .glow-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* La lueur elle-même */
+.home-img .glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--main-color);
+  border-radius: 50%;
+  filter: blur(40px);
+  /* Animation de pulsation */
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* --- DÉFINITION DES ANIMATIONS (KEYFRAMES) --- */
+
+/* Animation pour faire léviter l'image */
+@keyframes floatImage {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.4rem); /* Hauteur de la lévitation */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Animation pour faire pulser la lueur */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+
+
+
+/* --- NOUVEAUX STYLES POUR LA TIMELINE AVEC ICÔNES --- */
+.timeline-section {
+  min-height: auto;
+  padding-bottom: 8rem;
+}
+.timeline-items {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.timeline-items::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: var(--main-color);
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.3;
+}
+.timeline-item {
+  margin-bottom: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+.timeline-item:nth-child(odd) {
+  justify-content: flex-start;
+}
+.timeline-icon {
+  width: 5rem;
+  height: 5rem;
+  background: var(--main-color);
+  border: 4px solid var(--second-bg-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.7);
+}
+.timeline-icon i {
+  font-size: 2.5rem;
+  color: var(--second-bg-color);
+}
+.timeline-content {
+  background: rgba(26, 26, 46, 0.7);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  width: calc(50% - 4rem);
+  position: relative;
+}
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: 4rem;
+}
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-right: 4rem;
+}
+
+/* Flèche pointant vers la timeline */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  top: 1.5rem;
+}
+.timeline-item:nth-child(even) .timeline-content::before {
+  left: -1.5rem;
+  border-width: 0.8rem 1.5rem 0.8rem 0;
+  border-color: transparent rgba(0, 212, 255, 0.1) transparent transparent;
+}
+.timeline-item:nth-child(odd) .timeline-content::before {
+  right: -1.5rem;
+  border-width: 0.8rem 0 0.8rem 1.5rem;
+  border-color: transparent transparent transparent rgba(0, 212, 255, 0.1);
+}
+
+.timeline-content-date {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--main-color);
+  margin-bottom: 0.5rem;
+}
+.timeline-content h3 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+.timeline-content p {
+  font-size: 1.5rem;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+/* NOUVELLE ANIMATION POUR LES CARTES MOBILES */
+@keyframes mobile-card-wave {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
