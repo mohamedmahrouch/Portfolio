@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Portfolio Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+  <canvas id="canvas-bg"></canvas>
+  <header class="header">
+    <a href="#home" class="logo">Bienvenue !</a>
+    <button class="menu-toggle" id="menu-icon" aria-label="Ouvrir le menu">
+      <i class='bx bx-menu'></i>
+    </button>
+    <nav class="navbar">
+      <a href="#home" class="active">Accueil</a>
+      <a href="#about">À propos</a>
+      <a href="#animated-skills">Compétences</a>
+      <a href="#education">Éducation</a>
+      <a href="#experiences">Expériences</a>
+      <a href="#projets">Projets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <section class="home show-animate" id="home">
+    <div class="home-content">
+      <h1><span>MAHROUCH Mohamed</span></h1>
+      <div class="text-animate">
+        <h3>Fullstack Developer</h3>
+      </div>
+      <p>Actuellement en 2ème année de cycle d’ingénieur génie informatique à FST Errachidia. Je suis un étudiant dynamique, motivé, ambitieux et passionné par l'informatique.</p>
+      <div class="btn-box">
+        <a href="#" class="btn">Hire me</a>
+        <a href="#" class="btn">Let's talk</a>
+      </div>
+      <div class="home-sci">
+        <a href="https://www.facebook.com/mo" target="_blank"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.twitter.com/votreprofil" target="_blank"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/votreprofil" target="_blank"><i class="bx bxl-linkedin"></i></a>
+        <a href="CV1.pdf" download="CV.pdf"><i class="bx bx-download"></i></a>
+      </div>
+    </div>
+    <div class="section-divider">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-17,148.63-10.09,267.94,8.98,119.57,19.07,177,49,248.45,69.1,30.22,8.37,59,12.42,87.38,15.74V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+  </section>
+  <section class="about" id="about">
+    <h2 class="heading">À propos de <span>moi</span></h2>
+    <div class="about-img circle-spin">
+      <img src="imageR.png" alt="Photo de profil">
+    </div>
+    <div class="about-content">
+      <h3>Étudiant ingénieur en génie informatique</h3>
+      <p>Actuellement en première année de Cycle d'ingénieur en Génie informatique à la Faculté des Sciences et Techniques d'Errachidia (FST Errachidia). Je suis un étudiant dynamique, motivé, ambitieux et passionné par l'informatique.</p>
+      <div class="btn-box btns">
+        <a href="#" class="btn">Lire plus</a>
+      </div>
+    </div>
+  </section>
+  <section class="skills" id="skills">
+    <h2 class="heading">Mes <span>Compétences</span> & <span>Technologies</span></h2>
+    <div class="skills-row">
+      <div class="skills-column">
+        <h3 class="title">Langages de Programmation</h3>
+        <div class="skills-box">
+          <div class="skills-content">
+            <div class="progress">
+              <h3>C</h3>
+              <div class="bar"><span data-progress="90%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>C++</h3>
+              <div class="bar"><span data-progress="80%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>Java</h3>
+              <div class="bar"><span data-progress="85%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>Python</h3>
+              <div class="bar"><span data-progress="75%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>Golang</h3>
+              <div class="bar"><span data-progress="70%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-column">
+        <h3 class="title">Traitement & Visualisation de données</h3>
+        <div class="skills-box">
+          <div class="skills-content">
+            <div class="progress">
+              <h3>Numpy</h3>
+              <div class="bar"><span data-progress="80%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>Pandas</h3>
+              <div class="bar"><span data-progress="85%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>Matplotlib</h3>
+              <div class="bar"><span data-progress="70%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-column">
+        <h3 class="title">Bases de données</h3>
+        <div class="skills-box">
+          <div class="skills-content">
+            <div class="progress">
+              <h3>MySQL</h3>
+              <div class="bar"><span data-progress="90%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>PostgreSQL</h3>
+              <div class="bar"><span data-progress="85%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-column">
+        <h3 class="title">Frameworks</h3>
+        <div class="skills-box">
+          <div class="skills-content">
+            <div class="progress">
+              <h3>Laravel</h3>
+              <div class="bar"><span data-progress="80%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>Gin</h3>
+              <div class="bar"><span data-progress="100%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>NestJs</h3>
+              <div class="bar"><span data-progress="70%"></span></div>
+            </div>
+            <div class="progress">
+              <h3>NextJs</h3>
+              <div class="bar"><span data-progress="65%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- NOUVELLE SECTION DE COMPÉTENCES ANIMÉES -->
+<section class="animated-skills" id="animated-skills">
+    <h2 class="heading">Mes <span>Technologies</span></h2>
+    <div class="container">
+        <div class="wrapper">
+            <div class="inner" style="--quantity: 10;">
+<!-- REMPLACEZ LE CONTENU DE LA DIV .inner PAR CECI -->
+
+<div class="inner" style="--quantity: 10;">
+    <!-- Carte 0: HTML -->
+    <div class="card" style="--index: 0; --color-card: 228, 77, 38;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5">
+        <span>HTML5</span>
+    </div>
+    <!-- Carte 1: CSS -->
+    <div class="card" style="--index: 1; --color-card: 38, 77, 228;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3">
+        <span>CSS3</span>
+    </div>
+    <!-- Carte 2: JavaScript -->
+    <div class="card" style="--index: 2; --color-card: 247, 223, 30;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+        <span>JavaScript</span>
+    </div>
+    <!-- Carte 3: React -->
+    <div class="card" style="--index: 3; --color-card: 97, 218, 251;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+        <span>React</span>
+    </div>
+    <!-- Carte 4: Node.js -->
+    <div class="card" style="--index: 4; --color-card: 108, 157, 102;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+        <span>Node.js</span>
+    </div>
+    <!-- Carte 5: PostgreSQL -->
+    <div class="card" style="--index: 5; --color-card: 0, 109, 183;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL">
+        <span>PostgreSQL</span>
+    </div>
+    <!-- Carte 6: Laravel -->
+    <div class="card" style="--index: 6; --color-card: 242, 79, 73;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg" alt="Laravel">
+        <span>Laravel</span>
+    </div>
+    <!-- Carte 7: Docker -->
+    <div class="card" style="--index: 7; --color-card: 0, 173, 220;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_logo_software.svg" alt="Docker">
+        <span>Docker</span>
+    </div>
+    <!-- Carte 8: NestJS -->
+    <div class="card" style="--index: 8; --color-card: 229, 28, 79;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/NestJS.svg" alt="NestJS">
+        <span>NestJS</span>
+    </div>
+    <!-- Carte 9: Next.js -->
+    <div class="card" style="--index: 9; --color-card: 0, 0, 0;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg" alt="Next.js">
+        <span>Next.js</span>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+  <section class="education" id="education">
+    <h2 class="heading">Parcours <span>académique</span></h2>
+    <div class="education-row">
+      <div class="education-column">
+        <h3 class="title">Parcours académique</h3>
+        <div class="education-box">
+          <div class="education-content">
+            <div class="content">
+              <div class="year"><i class="bx bxs-calendar"></i> 2020 - 2021</div>
+              <h3>Baccalauréat, science mathématique</h3>
+              <p>Lycée de Tichoukt, Boulemane</p>
+            </div>
+          </div>
+          <div class="education-content">
+            <div class="content">
+              <div class="year"><i class="bx bxs-calendar"></i> 2021 - 2023</div>
+              <h3>DEUST en mathématique-informatique-physique</h3>
+              <p>FST Errachidia</p>
+            </div>
+          </div>
+          <div class="education-content">
+            <div class="content">
+              <div class="year"><i class="bx bxs-calendar"></i> 2023 - 2025</div>
+              <h3>Diplôme d'ingénieur d'état</h3>
+              <p>Génie informatique, FST Errachidia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="experiences" id="experiences">
+    <h2 class="heading">Mes <span>Expériences</span></h2>
+    <div class="education-row">
+      <div class="education-column">
+        <h3 class="title">Expériences Professionnelles</h3>
+        <div class="education-box">
+          <div class="education-content">
+            <div class="content">
+              <div class="year"><i class="bx bxs-calendar"></i> 30/06/2024 - 30/07/2024</div>
+              <h3>Stage en société RENTED</h3>
+              <p>Développement d'un système complet de gestion de location des chambres incluant réservation, gestion des chambres, utilisateurs et paiements. Technologies utilisées : Golang, Gin, PostgresSQL, Docker, Postman.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="projets" id="projets">
+    <h2 class="heading">Mes <span>Projets</span></h2>
+    <div class="projets-container">
+      <div class="projet-box">
+        <img src="imageR.png" alt="Projet 1">
+        <div class="projet-layer">
+          <h4>Nom du Projet 1</h4>
+          <p>Description courte du projet 1.</p>
+          <div class="technologies">
+            <img src="icon-html.png" alt="HTML">
+            <img src="icon-css.png" alt="CSS">
+            <img src="icon-js.png" alt="JavaScript">
+          </div>
+          <a href="https://github.com/lien-vers-projet-1" target="_blank"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="projet-box">
+        <img src="imageR.png" alt="Projet 2">
+        <div class="projet-layer">
+          <h4>Nom du Projet 2</h4>
+          <p>Description courte du projet 2.</p>
+          <div class="technologies">
+            <img src="icon-react.png" alt="React">
+            <img src="icon-nodejs.png" alt="Node.js">
+          </div>
+          <a href="https://github.com/lien-vers-projet-2" target="_blank"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="projet-box">
+        <img src="imageR.png" alt="Projet 3">
+        <div class="projet-layer">
+          <h4>Nom du Projet 3</h4>
+          <p>Description courte du projet 3.</p>
+          <div class="technologies">
+            <img src="icon-python.png" alt="Python">
+            <img src="icon-django.png" alt="Django">
+          </div>
+          <a href="https://github.com/lien-vers-projet-3" target="_blank"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+      <div class="projet-box">
+        <img src="imageR.png" alt="Projet 4">
+        <div class="projet-layer">
+          <h4>Nom du Projet 4</h4>
+          <p>Description courte du projet 4.</p>
+          <div class="technologies">
+            <img src="icon-html.png" alt="HTML">
+            <img src="icon-css.png" alt="CSS">
+            <img src="icon-js.png" alt="JavaScript">
+          </div>
+          <a href="https://github.com/lien-vers-projet-4" target="_blank"><i class="bx bx-link-external"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="contact">
+    <h2 class="heading">Contactez <span>Moi !</span></h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Parlons de votre projet.</h3>
+        <p>
+          Je suis actuellement à la recherche d'opportunités. N'hésitez pas à me contacter. Que ce soit pour une question, un projet ou simplement pour dire bonjour, ma boîte de réception est toujours ouverte.
+        </p>
+        <div class="info-item">
+          <i class='bx bxs-map'></i>
+          <p>Errachidia, Maroc</p>
+        </div>
+        <div class="info-item">
+          <i class='bx bxs-envelope'></i>
+          <p>votre.email@example.com</p>
+        </div>
+        <div class="info-item">
+          <i class='bx bxs-phone'></i>
+          <p>+212 6 00 00 00 00</p>
+        </div>
+      </div>
+      <form id="contactForm">
+        <div class="input-field">
+          <input type="text" id="fullName" name="fullName" placeholder=" " required>
+          <label for="fullName">Nom complet</label>
+        </div>
+        <div class="input-field">
+          <input type="email" id="emailAddress" name="emailAddress" placeholder=" " required>
+          <label for="emailAddress">Adresse Email</label>
+        </div>
+        <div class="input-field full-width">
+          <input type="text" id="subject" name="subject" placeholder=" " required>
+          <label for="subject">Sujet</label>
+        </div>
+        <div class="textarea-field full-width">
+          <textarea id="message" name="message" placeholder=" " required></textarea>
+          <label for="message">Votre Message</label>
+        </div>
+        <div class="btn-box">
+          <button type="submit" class="btn">
+            <span class="btn-text">Envoyer le Message</span>
+            <i class='btn-icon bx bx-paper-plane'></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-text">
+      <p>©2025 by M.MAHROUCH</p>
+    </div>
+    <div class="footer-icontop">
+      <a href="#"><i class="bx bx-up-arrow-alt"></i></a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
