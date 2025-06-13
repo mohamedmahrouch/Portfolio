@@ -30,9 +30,13 @@
   outline-offset: 2px;
 }
 
+/* DANS VOTRE FICHIER style.css */
+
 html {
   font-size: 62.5%;
   overflow-x: hidden;
+  /* AJOUTEZ CETTE LIGNE */
+  scroll-padding-top: 10rem; /* Ajustez cette valeur si nécessaire */
 }
 
 body {
@@ -1033,39 +1037,46 @@ section {
   }
 
   /* L'anneau 3D devient une ligne flexible */
-  .animated-skills .inner {
-    position: static;
-    width: max-content;
-    transform-style: flat;
-    animation: none;
-    display: flex;
-    gap: 2rem;
-  }
+/* NOUVELLE RÈGLE AVEC GLISSEMENT */
+.animated-skills .inner {
+  position: static;
+  width: max-content;
+  transform-style: flat;
+  display: flex;
+  gap: 2rem;
 
+  /* On applique l'animation de glissement */
+  animation: mobile-scroll-loop 25s linear infinite;
+}
   /* On réinitialise le style des cartes pour un affichage 2D */
 /* ANCIENNE RÈGLE (à remplacer) */
 /* NOUVEAU STYLE AVEC ANIMATION */
+/* DANS VOTRE MEDIA QUERY @media (max-width: 768px) */
+
 .animated-skills .card {
   position: static;
   transform: none !important;
   width: 18rem;
   height: 18rem;
   border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  /* On rend la carte invisible par défaut pour l'animation d'entrée */
-  opacity: 0;
-  /* On applique l'animation mais elle ne jouera que quand la classe .show-animate sera là */
+
+  /* CORRECTION CLÉ : on annule la transition et on force l'animation */
+  transition: none; /* On désactive la transition pour le mode mobile */
+  opacity: 0; /* On rend la carte invisible par défaut */
   animation: mobile-card-wave 0.5s ease-out forwards;
-  /* C'est la magie : on décale l'animation de chaque carte ! */
   animation-delay: calc(var(--index) * 0.1s);
+
 }
 
   /* Nouveau survol pour le mode 2D */
-  .animated-skills .card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
-  }
+/* DANS VOTRE MEDIA QUERY @media (max-width: 768px) */
+
+.animated-skills .card:hover {
+  /* On ré-applique une transition uniquement pour le survol */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(-10px) !important;
+  box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
+}
 
   /* On ajuste la taille du contenu des cartes */
   .animated-skills .card img {
@@ -1077,28 +1088,47 @@ section {
 }
 
 /* --- Version Très Petits Téléphones : On affine le défilement horizontal --- */
+/* --- RESPONSIVE POUR TRÈS PETITS TÉLÉPHONES (371px et moins) --- */
 @media (max-width: 371px) {
-  /* On réduit la taille des cartes */
+
+  /* --- SECTION HOME --- */
+/* --- DANS VOTRE MEDIA QUERY @media (max-width: 371px) --- */
+
+/* On ajuste la section d'accueil pour les très petits écrans */
+.home {
+  padding-top: 10rem; /* Augmente l'espace en haut pour pousser le contenu vers le bas */
+}
+
+.home-img {
+  width: 25rem; /* Réduit encore un peu l'image */
+  height: 25rem;
+  margin-top: 2rem; /* On peut réduire cette marge car le padding s'en occupe */
+}
+
+.home-content h1 {
+  font-size: 4rem; /* Réduit la taille du titre */
+}
+
+  /* --- SECTION TECHNOLOGIES --- */
   .animated-skills .card {
-    width: 15rem;
+    width: 15rem; /* On réduit la taille des cartes */
     height: 15rem;
     padding: 1rem;
     gap: 0.5rem;
   }
-
-  /* On ajuste l'image */
   .animated-skills .card img {
-    height: 45%;
+    height: 45%; /* On ajuste l'image dans la carte */
+  }
+  .animated-skills .card span {
+    font-size: 1.4rem; /* On ajuste le texte dans la carte */
+  }
+  .animated-skills .inner {
+    gap: 1.5rem; /* On réduit l'espace entre les cartes */
   }
 
-  /* On ajuste le texte */
-  .animated-skills .card span {
-    font-size: 1.4rem;
-  }
-  
-  /* On réduit l'espace entre les cartes */
-  .animated-skills .inner {
-    gap: 1.5rem;
+  /* --- SECTION TIMELINE --- */
+  .timeline-content {
+      padding: 1.5rem 2rem;
   }
 }
 
@@ -1299,4 +1329,112 @@ section {
     opacity: 1;
     transform: translateY(0);
   }
+}
+/* NOUVELLE ANIMATION POUR LE GLISSEMENT HORIZONTAL */
+@keyframes horizontal-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* On déplace le conteneur de toute sa largeur (moins la largeur de l'écran) */
+    /* Ceci est une approximation, nous allons utiliser une autre technique */
+    transform: translateX(calc(-100% + 100vw - 4rem)); /* 4rem = padding gauche + droite du wrapper */
+  }
+}
+/* NOUVELLE ANIMATION DE GLISSEMENT ALLER-RETOUR */
+@keyframes mobile-scroll-loop {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    /* On calcule la distance à parcourir */
+    /* (nombre de cartes * (largeur + gap)) - largeur de l'écran */
+    /* C'est complexe. Simplifions ! */
+    transform: translateX(calc(-100% + 90vw)); /* Déplace vers la gauche */
+  }
+  100% {
+    transform: translateX(0); /* Revient au début */
+  }
+}
+/* ANIMATION POUR LE BANDEAU DÉFILANT INFINI */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+/* --- RESPONSIVE DESIGN FINAL POUR LES COMPÉTENCES (AVEC DÉFILEMENT INFINI) --- */
+
+/* --- Version Tablette : Carrousel 3D réduit --- */
+@media (max-width: 991px) {
+  .animated-skills .inner {
+    width: 25rem;
+    height: 25rem;
+  }
+  .animated-skills .card {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
+  }
+  .animated-skills .card:hover {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
+  }
+}
+
+/* --- Version Téléphone (768px et moins) : Bandeau avec défilement infini --- */
+@media (max-width: 768px) {
+  .animated-skills .heading { margin-bottom: 4rem; }
+  .animated-skills .container { height: auto; padding: 2rem 0; }
+  
+  .animated-skills .wrapper {
+    perspective: none;
+    overflow: hidden; /* Cache les cartes qui dépassent */
+    /* Masque progressif sur les côtés pour un effet de fondu doux */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+
+  .animated-skills .inner {
+    position: static;
+    width: max-content;
+    transform-style: flat;
+    /* On applique l'animation de défilement */
+    animation: marquee-scroll 40s linear infinite;
+    display: flex;
+    gap: 2rem;
+  }
+
+  /* On met en pause l'animation au survol pour pouvoir cliquer */
+  .animated-skills .wrapper:hover .inner {
+    animation-play-state: paused;
+  }
+
+  .animated-skills .card {
+    position: static;
+    transform: none !important;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0; /* Empêche les cartes de se compresser */
+    opacity: 1; /* S'assure que les cartes sont toujours visibles */
+    animation: none; /* On retire toute autre animation d'entrée */
+  }
+
+  .animated-skills .card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
+  }
+
+  .animated-skills .card img { height: 40%; }
+  .animated-skills .card span { font-size: 1.6rem; }
+}
+
+/* --- Version Très Petits Téléphones : On affine la taille --- */
+@media (max-width: 371px) {
+  .animated-skills .card {
+    width: 15rem;
+    height: 15rem;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .animated-skills .card img { height: 45%; }
+  .animated-skills .card span { font-size: 1.4rem; }
+  .animated-skills .inner { gap: 1.5rem; }
 }
