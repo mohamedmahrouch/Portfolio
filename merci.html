@@ -4,11 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Message envoyé ! | Mohamed Mahrouch</title>
-    <!-- On utilise le même fichier CSS que la page principale -->
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Boxicons (externe, car c'est une librairie) -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- =================================================================== -->
+    <!--   STYLES CSS INTÉGRÉS DANS LA PAGE                                  -->
+    <!-- =================================================================== -->
     <style>
-        /* Styles spécifiques pour centrer le message */
-        .thank-you-container {
+        /* --- Import de la police --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        /* --- Variables CSS (Custom Properties) --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --second-bg-color: #1a1a2e;
+            --text-color: #ffffff;
+            --main-color: #00d4ff;
+            --accent-color: #ff6b6b;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* --- Reset & Styles de base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- Styles fondamentaux (HTML, Body) --- */
+        html {
+            font-size: 62.5%;
+            overflow: hidden; /* Empêche le défilement sur cette page */
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* --- Fond animé (Canvas) --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: var(--bg-color);
+        }
+
+        /* --- Style du Bouton --- */
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: var(--gradient-3);
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+            text-decoration: none;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+        .btn:hover::before {
+            left: 0;
+        }
+
+        /* --- Styles de la page de feedback --- */
+        .feedback-page {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -16,27 +110,182 @@
             text-align: center;
             min-height: 100vh;
             padding: 2rem;
+            animation: fadeIn 1s ease-in-out;
         }
-        .thank-you-container h1 {
-            font-size: 5rem;
+        .feedback-page .icon {
+            font-size: 10rem;
             color: var(--main-color);
             margin-bottom: 2rem;
+            line-height: 1;
         }
-        .thank-you-container p {
+        .feedback-page h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+        }
+        .feedback-page p {
             font-size: 1.8rem;
             margin-bottom: 3rem;
             max-width: 600px;
+            line-height: 1.6;
+            opacity: 0.9;
         }
-        .thank-you-container .btn {
-            text-decoration: none;
+
+        /* --- Animation d'apparition --- */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .feedback-page .icon {
+                font-size: 8rem;
+            }
+            .feedback-page h1 {
+                font-size: 4rem;
+            }
+            .feedback-page p {
+                font-size: 1.6rem;
+            }
+        }
+        @media (max-width: 450px) {
+            .feedback-page .icon {
+                font-size: 7rem;
+            }
+            .feedback-page h1 {
+                font-size: 3.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="thank-you-container">
+    <!-- Fond animé -->
+    <canvas id="canvas-bg"></canvas>
+    
+    <!-- Contenu principal -->
+    <main class="feedback-page">
+        <div class="icon">
+            <i class='bx bx-check-circle'></i>
+        </div>
         <h1>Merci !</h1>
         <p>Votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais.</p>
         <a href="index.html" class="btn">Retour à l'accueil</a>
-    </div>
+    </main>
+
+    <!-- =================================================================== -->
+    <!--   JAVASCRIPT INTÉGRÉ DANS LA PAGE                                   -->
+    <!-- =================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /**
+             * Configure et anime le fond de particules interactif avec le canvas.
+             * C'est le seul script nécessaire pour cette page.
+             */
+            function setupParticleCanvas() {
+                const canvas = document.getElementById('canvas-bg');
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const mouse = { x: undefined, y: undefined, radius: 150 };
+                let particles = [];
+                const colors = ['#00d4ff', '#4facfe', '#ff6b6b', '#f5576c'];
+                const maxParticles = 70;
+                const connectDistance = 90;
+
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.size = Math.random() * 2.5 + 1;
+                        this.baseSize = this.size;
+                        this.color = colors[Math.floor(Math.random() * colors.length)];
+                        this.speedX = (Math.random() * 2 - 1);
+                        this.speedY = (Math.random() * 2 - 1);
+                    }
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+                        let dx = mouse.x - this.x;
+                        let dy = mouse.y - this.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+                        this.size = (distance < mouse.radius) ? this.baseSize + (mouse.radius - distance) / 10 : this.baseSize;
+                    }
+                    draw() {
+                        ctx.fillStyle = this.color;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                function initParticles() {
+                    particles = [];
+                    for (let i = 0; i < maxParticles; i++) {
+                        particles.push(new Particle());
+                    }
+                }
+
+                function connectParticles() {
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            if (distance < connectDistance) {
+                                ctx.beginPath();
+                                ctx.strokeStyle = `rgba(0, 212, 255, ${1 - distance / connectDistance})`;
+                                ctx.lineWidth = 0.3;
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.update();
+                        p.draw();
+                    });
+                    connectParticles();
+                    requestAnimationFrame(animate);
+                }
+
+                window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
+                window.addEventListener('mouseleave', () => { mouse.x = undefined; mouse.y = undefined; });
+                
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                        initParticles();
+                    }, 250);
+                });
+
+                initParticles();
+                animate();
+            }
+
+            // On lance uniquement l'animation du canvas sur cette page.
+            setupParticleCanvas();
+        });
+    </script>
 </body>
 </html>
