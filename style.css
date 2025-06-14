@@ -1,5 +1,11 @@
+/* =================================================================== */
+/*   1. CONFIGURATION & STYLES GLOBAUX                                 */
+/* =================================================================== */
+
+/* --- Import de la police --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
+/* --- Variables CSS (Custom Properties) --- */
 :root {
   --bg-color: #0a0a0a;
   --second-bg-color: #1a1a2e;
@@ -11,6 +17,7 @@
   --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
+/* --- Reset & Styles de base --- */
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +29,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* --- Accessibilité pour le focus --- */
 *:focus:not(:focus-visible) {
   outline: none;
 }
@@ -30,23 +38,7 @@
   outline-offset: 2px;
 }
 
-/* DANS VOTRE FICHIER style.css */
-
-html {
-  font-size: 62.5%;
-  overflow-x: hidden;
-  /* AJOUTEZ CETTE LIGNE */
-  scroll-padding-top: 10rem; /* Ajustez cette valeur si nécessaire */
-}
-
-body {
-  background: var(--bg-color);
-  color: var(--text-color);
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
+/* --- Classe d'accessibilité pour lecteurs d'écran --- */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -59,6 +51,22 @@ body {
   border: 0;
 }
 
+/* --- Styles fondamentaux (HTML, Body) --- */
+html {
+  font-size: 62.5%; /* Astuce pour que 1rem = 10px, facilitant les calculs */
+  overflow-x: hidden;
+  scroll-padding-top: 10rem; /* Décale l'ancre de défilement pour ne pas être cachée par le header */
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Fond animé (Canvas) --- */
 #canvas-bg {
   position: fixed;
   top: 0;
@@ -70,6 +78,11 @@ body {
   background: var(--bg-color);
 }
 
+/* =================================================================== */
+/*   2. COMPOSANTS RÉUTILISABLES (Header, Footer, Boutons...)          */
+/* =================================================================== */
+
+/* --- Header --- */
 .header {
   position: fixed;
   top: 0;
@@ -96,8 +109,8 @@ body {
   font-weight: 700;
   background: var(--gradient-3);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   transition: all 0.3s ease;
 }
 
@@ -106,7 +119,7 @@ body {
   color: var(--text-color);
   font-weight: 500;
   margin-left: 3.5rem;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
 }
@@ -120,13 +133,13 @@ body {
   background: var(--gradient-3);
   transition: width 0.3s ease;
 }
-.navbar a:hover::before,
-.navbar a.active::before {
-  width: 100%;
-}
 .navbar a:hover,
 .navbar a.active {
   color: var(--main-color);
+}
+.navbar a:hover::before,
+.navbar a.active::before {
+  width: 100%;
 }
 
 .menu-toggle, #menu-icon {
@@ -138,50 +151,72 @@ body {
   color: var(--text-color);
 }
 
-section {
-  min-height: 100vh;
-  padding: 10rem 9% 2rem;
-  position: relative;
-  background: transparent;
+/* --- Footer --- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 9%;
+  background: rgba(10, 10, 10, 0.8);
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
+}
+.footer-text p {
+  font-size: 1.6rem;
+}
+.footer-icontop a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: .8rem;
+  background: var(--main-color);
+  border-radius: .8rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+}
+.footer-icontop a.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.footer-icontop a:hover {
+  box-shadow: 0 0 1rem var(--main-color);
+}
+.footer-icontop a i {
+  font-size: 2.4rem;
+  color: var(--bg-color);
 }
 
-.home {
-  display: flex;
-  align-items: center;
-  padding: 0 9%;
-  overflow: hidden;
-}
-.home-content {
-  max-width: 60rem;
-  z-index: 2;
-}
-.home-content h1 {
-  font-size: 6rem;
+/* --- Titres de section --- */
+.heading {
+  font-size: 4.5rem;
   font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 2rem;
-  background: var(--gradient-3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.text-animate {
+  text-align: center;
+  margin-bottom: 6rem;
   position: relative;
-  margin-bottom: 3rem;
-  min-height: 4rem;
 }
-.text-animate h3 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+.heading span {
+  color: var(--main-color);
 }
-.home-content p {
-  font-size: 1.8rem;
-  margin: 2rem 0 4rem;
-  line-height: 1.8;
-  opacity: 0.9;
+.heading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1.5rem;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--main-color);
+  border-radius: 2px;
+  box-shadow: 0 0 15px var(--main-color), 0 0 30px var(--main-color);
 }
+
+/* --- Boutons --- */
 .btn-box {
   display: flex;
   gap: 2rem;
@@ -214,12 +249,68 @@ section {
   transition: left 0.3s ease;
   z-index: -1;
 }
-.btn:hover::before {
-  left: 0;
-}
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+}
+.btn:hover::before {
+  left: 0;
+}
+
+/* =================================================================== */
+/*   3. SECTIONS DE LA PAGE                                            */
+/* =================================================================== */
+
+/* --- Styles généraux pour les sections --- */
+section {
+  min-height: 100vh;
+  padding: 10rem 9% 2rem;
+  position: relative;
+  background: transparent;
+}
+
+/* --- Section: Home --- */
+.home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 9%;
+  overflow: hidden;
+}
+.home-content {
+  max-width: 60rem;
+  z-index: 2;
+}
+.home-content h1 {
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  background: var(--gradient-3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.home-content .text-animate {
+  position: relative;
+  margin-bottom: 3rem;
+  min-height: 4rem;
+}
+.home-content .text-animate h3 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+.home-content p {
+  font-size: 1.8rem;
+  margin: 2rem 0 4rem;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+.home-sci {
+  display: flex;
+  gap: 1rem;
 }
 .home-sci a {
   display: inline-flex;
@@ -249,38 +340,46 @@ section {
   transition: width 0.3s ease;
   z-index: -1;
 }
-.home-sci a:hover::before {
-  width: 100%;
-}
 .home-sci a:hover {
   color: white;
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
 }
-
-.heading {
-  font-size: 4.5rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 6rem;
+.home-sci a:hover::before {
+  width: 100%;
+}
+.home-img {
   position: relative;
+  width: 40rem;
+  height: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.heading span {
-  color: var(--main-color);
+.home-img img {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  animation: floatImage 4s ease-in-out infinite;
 }
-.heading::after {
-  content: '';
+.home-img .glow-wrap {
   position: absolute;
-  left: 50%;
-  bottom: -1.5rem;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.home-img .glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background: var(--main-color);
-  border-radius: 2px;
-  box-shadow: 0 0 15px var(--main-color), 0 0 30px var(--main-color);
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: pulseGlow 6s ease-in-out infinite;
 }
 
+
+/* --- Section: About --- */
 .about {
   display: flex;
   justify-content: center;
@@ -288,53 +387,31 @@ section {
   flex-direction: column;
   gap: 4rem;
 }
-/* NOUVELLE VERSION AVEC BORDURE ANIMÉE */
-/* NOUVELLE VERSION TRÈS VISIBLE */
 .about-img {
   position: relative;
   width: 25rem;
   height: 25rem;
   border-radius: 50%;
-  /* 1. Bordure plus épaisse */
   padding: 8px; 
   overflow: hidden;
-  /* 2. Ajout de la lueur (glow) */
   box-shadow: 0 0 25px var(--main-color), 0 0 50px rgba(0, 212, 255, 0.4);
 }
-
 .about-img::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 150%;
   height: 150%;
-  background: conic-gradient(
-    from 180deg,
-    var(--main-color), 
-    var(--accent-color), 
-    #4facfe,
-    #764ba2, /* Ajout d'une couleur pour plus de dynamisme */
-    var(--main-color)
-  );
-  /* 3. Vitesse de rotation augmentée */
+  background: conic-gradient(from 180deg, var(--main-color), var(--accent-color), #4facfe, #764ba2, var(--main-color));
   animation: rotate-border 3s linear infinite;
-}
-@keyframes rotate-border {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
 }
 .about-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  position: relative; /* Pour s'assurer qu'elle est au-dessus du pseudo-élément */
+  position: relative;
   z-index: 1;
 }
 .about-content {
@@ -352,11 +429,12 @@ section {
   font-size: 1.6rem;
   margin: 2rem 0 3rem;
 }
-.btn-box.btns {
+.about-content .btn-box.btns {
   display: inline-block;
   width: 15rem;
 }
 
+/* --- Section: Skills (Barres de progression) --- */
 .skills-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -380,14 +458,14 @@ section {
   transform: rotateY(0deg);
   opacity: 1;
 }
-.skills-column:hover {
-  box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
-  border: 1px solid rgba(0, 212, 255, 0.3);
-}
 .show-animate .skills-column:nth-child(1) { transition-delay: 0.2s; }
 .show-animate .skills-column:nth-child(2) { transition-delay: 0.4s; }
 .show-animate .skills-column:nth-child(3) { transition-delay: 0.6s; }
 .show-animate .skills-column:nth-child(4) { transition-delay: 0.8s; }
+.skills-column:hover {
+  box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
 .skills-column .title {
   font-size: 2.2rem;
   color: var(--main-color);
@@ -427,14 +505,14 @@ section {
   width: 0;
   transition: width .5s ease;
 }
-/* --- NOUVELLE SECTION COMPÉTENCES ANIMÉES --- */
+
+/* --- Section: Skills (Carrousel 3D / Défilement mobile) --- */
 .animated-skills {
   display: grid;
   place-content: center;
   overflow: hidden;
   min-height: 100vh;
 }
-
 .animated-skills .container {
   display: flex;
   justify-content: center;
@@ -442,7 +520,6 @@ section {
   width: 100%;
   height: 60rem;
 }
-
 .animated-skills .wrapper {
   position: relative;
   width: 100%;
@@ -452,7 +529,6 @@ section {
   align-items: center;
   perspective: 2000px;
 }
-
 .animated-skills .inner {
   position: absolute;
   width: 30rem;
@@ -461,17 +537,6 @@ section {
   transform-style: preserve-3d;
   animation: rotate 35s linear infinite;
 }
-
-@keyframes rotate {
-  from {
-    transform: rotateY(0);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-/* NOUVEAU BLOC POUR LES CARTES ANIMÉES */
 .animated-skills .card {
   position: absolute;
   top: 0;
@@ -483,27 +548,25 @@ section {
   background-color: rgba(255, 255, 255, 0.9);
   transform-origin: 50% 50%;
   transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(40rem);
-  box-shadow: 0 0 20px rgba(var(--color-card), 0.8),
-              inset 0 0 15px rgba(var(--color-card), 0.5);
+  box-shadow: 0 0 20px rgba(var(--color-card), 0.8), inset 0 0 15px rgba(var(--color-card), 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  /* Nouveaux styles pour centrer le contenu */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
-
-/* Style pour l'image à l'intérieur de la carte */
+.animated-skills .card:hover {
+  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(45rem) scale(1.1);
+  box-shadow: 0 0 35px rgba(var(--color-card), 1), inset 0 0 25px rgba(var(--color-card), 0.7);
+  z-index: 10;
+}
 .animated-skills .card img {
   height: 50%;
   max-height: 10rem;
-  object-fit: contain; /* Pour que les logos ne soient pas déformés */
+  object-fit: contain;
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
 }
-
-/* Style pour le texte à l'intérieur de la carte */
 .animated-skills .card span {
   font-size: 2rem;
   font-weight: 700;
@@ -511,36 +574,7 @@ section {
   text-align: center;
 }
 
-.animated-skills .card:hover {
-  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(45rem) scale(1.1);
-  box-shadow: 0 0 35px rgba(var(--color-card), 1),
-              inset 0 0 25px rgba(var(--color-card), 0.7);
-  z-index: 10;
-}
-
-/* RESPONSIVE DESIGN POUR LES COMPÉTENCES ANIMÉES */
-@media (max-width: 991px) {
-  .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
-  }
-  .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
-  }
-}
-
-@media (max-width: 768px) {
-  .animated-skills .inner {
-    width: 25rem;
-    height: 25rem;
-  }
-  .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(25rem);
-  }
-  .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem) scale(1.1);
-  }
-}
-
+/* --- Section: Projets --- */
 .projets-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -599,12 +633,13 @@ section {
   font-size: 2rem;
   color: var(--second-bg-color);
 }
-.technologies {
+.projet-layer .technologies {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
 }
-.technologies img {
+.projet-layer .technologies img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -612,6 +647,8 @@ section {
   padding: 5px;
 }
 
+
+/* --- Section: Education (Ancien style) --- */
 .education-row {
   display: flex;
   justify-content: center;
@@ -672,552 +709,8 @@ section {
   padding-top: .5rem;
 }
 
-.contact-container {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
-  align-items: flex-start;
-  background: rgba(26, 26, 46, 0.5);
-  padding: 3rem;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 212, 255, 0.1);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.contact-info h3 {
-  font-size: 2.8rem;
-  color: var(--main-color);
-  margin-bottom: 1rem;
-}
-.contact-info p {
-  font-size: 1.6rem;
-  opacity: 0.8;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-}
-.contact-info .info-item {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-.contact-info .info-item i {
-  font-size: 2.4rem;
-  color: var(--main-color);
-}
-.contact #contactForm {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-.input-field, .textarea-field {
-  position: relative;
-}
-.input-field.full-width, .textarea-field.full-width {
-  grid-column: 1 / -1;
-}
-.input-field input, .textarea-field textarea {
-  width: 100%;
-  padding: 1.2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: var(--text-color);
-  font-size: 1.6rem;
-  transition: all 0.3s ease;
-}
-.input-field label, .textarea-field label {
-  position: absolute;
-  top: 50%;
-  left: 1.2rem;
-  transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 1.6rem;
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-.input-field input:focus, .textarea-field textarea:focus {
-  border-color: var(--main-color);
-  background: rgba(0, 212, 255, 0.1);
-}
-.input-field input:focus + label,
-.input-field input:not(:placeholder-shown) + label,
-.textarea-field textarea:focus + label,
-.textarea-field textarea:not(:placeholder-shown) + label {
-  top: -1rem;
-  left: 1rem;
-  font-size: 1.2rem;
-  color: var(--main-color);
-  background: #1a1a2e;
-  padding: 0 0.5rem;
-  border-radius: 4px;
-}
-.textarea-field textarea {
-  resize: none;
-  height: 150px;
-}
-.textarea-field label {
-  top: 1.5rem;
-  transform: none;
-}
-.textarea-field textarea:focus + label,
-.textarea-field textarea:not(:placeholder-shown) + label {
-  top: -1rem;
-}
-.contact .btn-box {
-  grid-column: 1 / -1;
-  text-align: right;
-}
-.contact .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-}
 
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 2rem 9%;
-  background: rgba(10, 10, 10, 0.8);
-  border-top: 1px solid rgba(0, 212, 255, 0.1);
-}
-.footer-text p {
-  font-size: 1.6rem;
-}
-
-.footer-icontop a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: .8rem;
-  background: var(--main-color);
-  border-radius: .8rem;
-  transition: .5s ease;
-}
-.footer-icontop a:hover {
-  box-shadow: 0 0 1rem var(--main-color);
-}
-.footer-icontop a i {
-  font-size: 2.4rem;
-  color: var(--bg-color);
-}
-.footer-icontop a {
-  /* ... vos styles actuels ... */
-  position: fixed; /* Important pour le positionner par rapport à la page */
-  bottom: 2rem;
-  right: 2rem;
-  opacity: 0;
-  pointer-events: none; /* Non cliquable quand il est invisible */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transform: translateY(10px); /* Il part d'un peu plus bas */
-}
-
-.footer-icontop a.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-@media (max-width: 1200px) {
-  html {
-    font-size: 55%;
-  }
-}
-@media (max-width: 991px) {
-  .header {
-    padding: 2rem 3%;
-  }
-  section {
-    padding: 10rem 3% 2rem;
-  }
-  .projets {
-    padding-bottom: 7rem;
-  }
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-  .footer {
-    padding: 2rem 3%;
-  }
-}
-@media (max-width: 768px) {
-  #menu-icon, .menu-toggle {
-    display: block;
-  }
-  .navbar {
-    position: absolute;
-    top: 100%;
-    left: -100%;
-    width: 100%;
-    padding: 1rem 3%;
-    background: var(--bg-color);
-    border-top: .1rem solid rgba(0,0,0,.2);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
-    transition: .25s ease;
-  }
-  .navbar.active {
-    left: 0;
-  }
-  .navbar a {
-    display: block;
-    font-size: 2rem;
-    margin: 3rem 0;
-  }
-  .home {
-    flex-direction: column;
-  }
-  .home-content h3 {
-    font-size: 2.6rem;
-  }
-  .home-content h1 {
-    font-size: 5rem;
-  }
-  .about {
-    flex-direction: column-reverse;
-  }
-  .projets-container {
-    grid-template-columns: 1fr;
-  }
-  .contact #contactForm {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 450px) {
-  html {
-    font-size: 50%;
-  }
-}
-@media (max-width: 365px) {
-  .footer {
-    flex-direction: column-reverse;
-  }
-  .footer p {
-    text-align: center;
-    margin-top: 2rem;
-  }
-}/* --- RESPONSIVE DESIGN POUR LES COMPÉTENCES ANIMÉES --- */
-
-/* --- Version Tablette : On réduit le carrousel --- */
-@media (max-width: 991px) {
-  .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
-  }
-  .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
-  }
-}
-
-/* --- Version Téléphone : On passe à un scroll horizontal --- */
-@media (max-width: 768px) {
-  .animated-skills .heading {
-    margin-bottom: 4rem;
-  }
-  .animated-skills .container {
-    height: auto;
-    padding: 2rem 0;
-  }
-
-  /* On transforme le conteneur en zone de scroll */
-  .animated-skills .wrapper {
-    perspective: none; /* Plus besoin de 3D */
-    overflow-x: auto; /* Active le scroll horizontal */
-    padding: 0 2rem 2rem 2rem; /* Espace pour le scroll et l'esthétique */
-    -ms-overflow-style: none;  /* Cache la barre de scroll sur IE/Edge */
-    scrollbar-width: none;  /* Cache la barre de scroll sur Firefox */
-  }
-  /* Cache la barre de scroll sur Chrome/Safari/Opera */
-  .animated-skills .wrapper::-webkit-scrollbar { 
-    display: none;
-  }
-
-  /* On transforme l'anneau en une simple ligne flexible */
-  .animated-skills .inner {
-    position: static;
-    width: max-content; /* Pour que la ligne s'étende autant que nécessaire */
-    transform-style: flat;
-    animation: none; /* On arrête l'animation de rotation */
-    display: flex;
-    gap: 2rem;
-  }
-
-  /* On réinitialise complètement le style des cartes */
-  .animated-skills .card {
-    position: static;
-    transform: none !important; /* !important est nécessaire pour écraser le style en ligne */
-    width: 18rem;
-    height: 18rem;
-    border-radius: 20px; /* On passe à un carré arrondi, plus joli en ligne */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  /* On définit un nouveau survol (hover) pour le mobile */
-  .animated-skills .card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
-  }
-
-  /* On ajuste la taille du contenu des cartes */
-  .animated-skills .card img {
-    height: 40%;
-  }
-  .animated-skills .card span {
-    font-size: 1.6rem;
-  }
-  /* Dans la media query @media (max-width: 768px) */
-
-.home {
-  flex-direction: column-reverse; /* Place l'image en haut et le texte en bas */
-  gap: 2rem;
-}
-
-.home-content {
-  text-align: center; /* Centre le texte pour un meilleur affichage mobile */
-}
-
-.home-content .btn-box,
-.home-content .home-sci {
-  justify-content: center; /* Centre les boutons et les icônes sociales */
-}
-
-.home-img {
-  width: 25rem;
-  height: 25rem;
-  margin-top: 2rem;
-}
-}
-/* --- NOUVEAU RESPONSIVE DESIGN POUR LES COMPÉTENCES ANIMÉES --- */
-
-/* --- RESPONSIVE DESIGN FINAL POUR LES COMPÉTENCES ANIMÉES --- */
-
-/* --- Version Tablette : On réduit la profondeur du carrousel 3D --- */
-@media (max-width: 991px) {
-  .animated-skills .inner {
-    width: 25rem;
-    height: 25rem;
-  }
-  .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
-  }
-  .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
-  }
-}
-
-/* --- Version Téléphone : On passe au défilement horizontal --- */
-@media (max-width: 768px) {
-  .terminal-window {
-  height: 450px; /* Un peu moins haut sur tablette/mobile */
-}
-  .animated-skills .heading {
-    margin-bottom: 4rem;
-  }
-  .animated-skills .container {
-    height: auto;
-    padding: 2rem 0;
-  }
-
-  /* Le conteneur devient une zone de scroll */
-  .animated-skills .wrapper {
-    perspective: none;
-    overflow-x: auto;
-    padding: 0 2rem 2rem 2rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .animated-skills .wrapper::-webkit-scrollbar { 
-    display: none;
-  }
-
-  /* L'anneau 3D devient une ligne flexible */
-/* NOUVELLE RÈGLE AVEC GLISSEMENT */
-.animated-skills .inner {
-  position: static;
-  width: max-content;
-  transform-style: flat;
-  display: flex;
-  gap: 2rem;
-
-  /* On applique l'animation de glissement */
-  animation: mobile-scroll-loop 25s linear infinite;
-}
-  /* On réinitialise le style des cartes pour un affichage 2D */
-/* ANCIENNE RÈGLE (à remplacer) */
-/* NOUVEAU STYLE AVEC ANIMATION */
-/* DANS VOTRE MEDIA QUERY @media (max-width: 768px) */
-
-.animated-skills .card {
-  position: static;
-  transform: none !important;
-  width: 18rem;
-  height: 18rem;
-  border-radius: 20px;
-
-  /* CORRECTION CLÉ : on annule la transition et on force l'animation */
-  transition: none; /* On désactive la transition pour le mode mobile */
-  opacity: 0; /* On rend la carte invisible par défaut */
-  animation: mobile-card-wave 0.5s ease-out forwards;
-  animation-delay: calc(var(--index) * 0.1s);
-
-}
-
-  /* Nouveau survol pour le mode 2D */
-/* DANS VOTRE MEDIA QUERY @media (max-width: 768px) */
-
-.animated-skills .card:hover {
-  /* On ré-applique une transition uniquement pour le survol */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform: translateY(-10px) !important;
-  box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
-}
-
-  /* On ajuste la taille du contenu des cartes */
-  .animated-skills .card img {
-    height: 40%;
-  }
-  .animated-skills .card span {
-    font-size: 1.6rem;
-  }
-}
-
-/* --- Version Très Petits Téléphones : On affine le défilement horizontal --- */
-/* --- RESPONSIVE POUR TRÈS PETITS TÉLÉPHONES (371px et moins) --- */
-@media (max-width: 371px) {
-
-  /* --- SECTION HOME --- */
-/* --- DANS VOTRE MEDIA QUERY @media (max-width: 371px) --- */
-
-/* On ajuste la section d'accueil pour les très petits écrans */
-.home {
-  padding-top: 10rem; /* Augmente l'espace en haut pour pousser le contenu vers le bas */
-}
-
-.home-img {
-  width: 25rem; /* Réduit encore un peu l'image */
-  height: 25rem;
-  margin-top: 2rem; /* On peut réduire cette marge car le padding s'en occupe */
-}
-
-.home-content h1 {
-  font-size: 4rem; /* Réduit la taille du titre */
-}
-
-  /* --- SECTION TECHNOLOGIES --- */
-  .animated-skills .card {
-    width: 15rem; /* On réduit la taille des cartes */
-    height: 15rem;
-    padding: 1rem;
-    gap: 0.5rem;
-  }
-  .animated-skills .card img {
-    height: 45%; /* On ajuste l'image dans la carte */
-  }
-  .animated-skills .card span {
-    font-size: 1.4rem; /* On ajuste le texte dans la carte */
-  }
-  .animated-skills .inner {
-    gap: 1.5rem; /* On réduit l'espace entre les cartes */
-  }
-
-  /* --- SECTION TIMELINE --- */
-  .timeline-content {
-      padding: 1.5rem 2rem;
-  }
-}
-
-
-/* --- NOUVEAUX STYLES POUR L'IMAGE DE LA SECTION HOME --- */
-
-/* On ajuste le conteneur principal de la section 'home' */
-.home {
-  justify-content: space-between; /* Pousse le texte à gauche et l'image à droite */
-  align-items: center;
-}
-
-/* Le conteneur de l'image */
-.home-img {
-  position: relative;
-  width: 40rem;
-  height: 40rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* L'image elle-même */
-.home-img img {
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  /* Animation de lévitation */
-  animation: floatImage 4s ease-in-out infinite;
-}
-
-/* Le conteneur pour la lueur */
-.home-img .glow-wrap {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-/* La lueur elle-même */
-.home-img .glow {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: var(--main-color);
-  border-radius: 50%;
-  filter: blur(40px);
-  /* Animation de pulsation */
-  animation: pulseGlow 6s ease-in-out infinite;
-}
-
-/* --- DÉFINITION DES ANIMATIONS (KEYFRAMES) --- */
-
-/* Animation pour faire léviter l'image */
-@keyframes floatImage {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2.4rem); /* Hauteur de la lévitation */
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Animation pour faire pulser la lueur */
-@keyframes pulseGlow {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.9);
-    opacity: 0.7;
-  }
-}
-
-
-
-
-/* --- NOUVEAUX STYLES POUR LA TIMELINE AVEC ICÔNES --- */
+/* --- Section: Timeline (Nouveau style) --- */
 .timeline-section {
   min-height: auto;
   padding-bottom: 8rem;
@@ -1284,9 +777,7 @@ section {
 .timeline-item:nth-child(odd) .timeline-content {
   margin-right: 4rem;
 }
-
-/* Flèche pointant vers la timeline */
-.timeline-content::before {
+.timeline-content::before { /* Flèche */
   content: '';
   position: absolute;
   width: 0;
@@ -1304,7 +795,6 @@ section {
   border-width: 0.8rem 0 0.8rem 1.5rem;
   border-color: transparent transparent transparent rgba(0, 212, 255, 0.1);
 }
-
 .timeline-content-date {
   display: block;
   font-size: 1.4rem;
@@ -1322,137 +812,8 @@ section {
   opacity: 0.8;
   line-height: 1.6;
 }
-/* NOUVELLE ANIMATION POUR LES CARTES MOBILES */
-@keyframes mobile-card-wave {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* NOUVELLE ANIMATION POUR LE GLISSEMENT HORIZONTAL */
-@keyframes horizontal-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    /* On déplace le conteneur de toute sa largeur (moins la largeur de l'écran) */
-    /* Ceci est une approximation, nous allons utiliser une autre technique */
-    transform: translateX(calc(-100% + 100vw - 4rem)); /* 4rem = padding gauche + droite du wrapper */
-  }
-}
-/* NOUVELLE ANIMATION DE GLISSEMENT ALLER-RETOUR */
-@keyframes mobile-scroll-loop {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    /* On calcule la distance à parcourir */
-    /* (nombre de cartes * (largeur + gap)) - largeur de l'écran */
-    /* C'est complexe. Simplifions ! */
-    transform: translateX(calc(-100% + 90vw)); /* Déplace vers la gauche */
-  }
-  100% {
-    transform: translateX(0); /* Revient au début */
-  }
-}
-/* ANIMATION POUR LE BANDEAU DÉFILANT INFINI */
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-/* --- RESPONSIVE DESIGN FINAL POUR LES COMPÉTENCES (AVEC DÉFILEMENT INFINI) --- */
 
-/* --- Version Tablette : Carrousel 3D réduit --- */
-@media (max-width: 991px) {
-  .animated-skills .inner {
-    width: 25rem;
-    height: 25rem;
-  }
-  .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
-  }
-  .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
-  }
-}
-
-/* --- Version Téléphone (768px et moins) : Bandeau avec défilement infini --- */
-@media (max-width: 768px) {
-  .animated-skills .heading { margin-bottom: 4rem; }
-  .animated-skills .container { height: auto; padding: 2rem 0; }
-  
-  .animated-skills .wrapper {
-    perspective: none;
-    overflow: hidden; /* Cache les cartes qui dépassent */
-    /* Masque progressif sur les côtés pour un effet de fondu doux */
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  }
-
-  .animated-skills .inner {
-    position: static;
-    width: max-content;
-    transform-style: flat;
-    /* On applique l'animation de défilement */
-    animation: marquee-scroll 40s linear infinite;
-    display: flex;
-    gap: 2rem;
-  }
-
-  /* On met en pause l'animation au survol pour pouvoir cliquer */
-  .animated-skills .wrapper:hover .inner {
-    animation-play-state: paused;
-  }
-
-  .animated-skills .card {
-    position: static;
-    transform: none !important;
-    width: 18rem;
-    height: 18rem;
-    border-radius: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex-shrink: 0; /* Empêche les cartes de se compresser */
-    opacity: 1; /* S'assure que les cartes sont toujours visibles */
-    animation: none; /* On retire toute autre animation d'entrée */
-  }
-
-  .animated-skills .card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
-  }
-
-  .animated-skills .card img { height: 40%; }
-  .animated-skills .card span { font-size: 1.6rem; }
-}
-@media (max-width: 450px) {
-  html {
-    font-size: 50%;
-  }
-  .terminal-window {
-  border-radius: 0; /* Prend tout l'écran */
-  height: 60vh;
-}
-.terminal-section {
-  padding: 10rem 0 4rem;
-}
-}
-/* --- Version Très Petits Téléphones : On affine la taille --- */
-@media (max-width: 371px) {
-  .animated-skills .card {
-    width: 15rem;
-    height: 15rem;
-    padding: 1rem;
-    gap: 0.5rem;
-  }
-  .animated-skills .card img { height: 45%; }
-  .animated-skills .card span { font-size: 1.4rem; }
-  .animated-skills .inner { gap: 1.5rem; }
-}
-/* --- STYLES POUR LA SECTION TERMINAL CMD --- */
+/* --- Section: Terminal --- */
 .terminal-section {
   min-height: auto;
   padding: 10rem 9% 8rem;
@@ -1460,7 +821,6 @@ section {
   flex-direction: column;
   align-items: center;
 }
-
 .terminal-window {
   width: 100%;
   max-width: 800px;
@@ -1473,7 +833,6 @@ section {
   display: flex;
   flex-direction: column;
 }
-
 .terminal-header {
   display: flex;
   align-items: center;
@@ -1483,12 +842,10 @@ section {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-
 .terminal-buttons {
   display: flex;
   gap: 0.8rem;
 }
-
 .btn-term {
   width: 1.2rem;
   height: 1.2rem;
@@ -1497,14 +854,12 @@ section {
 .btn-term.close { background: #ff5f56; }
 .btn-term.minimize { background: #ffbd2e; }
 .btn-term.expand { background: #27c93f; }
-
 .terminal-title {
   color: #ccc;
   font-family: 'Courier New', Courier, monospace;
   margin: 0 auto;
   font-weight: bold;
 }
-
 .terminal-body {
   flex-grow: 1;
   padding: 1rem;
@@ -1514,54 +869,381 @@ section {
   line-height: 1.6;
   color: var(--text-color);
 }
-.terminal-body::-webkit-scrollbar {
-  width: 8px;
-}
-.terminal-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-.terminal-body::-webkit-scrollbar-thumb {
-  background: rgba(0, 212, 255, 0.5);
-  border-radius: 4px;
-}
+.terminal-body::-webkit-scrollbar { width: 8px; }
+.terminal-body::-webkit-scrollbar-track { background: transparent; }
+.terminal-body::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.5); border-radius: 4px; }
+#terminalOutput .terminal-line { white-space: pre-wrap; word-break: break-all; }
+#terminalOutput .command-line { color: #888; }
+#terminalOutput .output-line { color: var(--text-color); }
+#terminalOutput .output-line.success { color: #27c93f; }
+#terminalOutput .output-line.error { color: #ff5f56; }
+#terminalOutput .output-line.info { color: var(--main-color); }
+.terminal-prompt { display: flex; align-items: center; gap: 0.8rem; }
+.prompt-user { color: #27c93f; font-weight: bold; }
+.terminal-input { flex-grow: 1; background: none; border: none; color: var(--text-color); font-family: 'Courier New', Courier, monospace; font-size: 1.4rem; }
+.terminal-input:focus { outline: none; }
 
-#terminalOutput .terminal-line {
-  white-space: pre-wrap;
-  word-break: break-all;
+
+/* --- Section: Contact --- */
+.contact-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: flex-start;
+  background: rgba(26, 26, 46, 0.5);
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
 }
-#terminalOutput .command-line {
-  color: #888;
-}
-#terminalOutput .output-line {
-  color: var(--text-color);
-}
-#terminalOutput .output-line.success {
-  color: #27c93f;
-}
-#terminalOutput .output-line.error {
-  color: #ff5f56;
-}
-#terminalOutput .output-line.info {
+.contact-info h3 {
+  font-size: 2.8rem;
   color: var(--main-color);
+  margin-bottom: 1rem;
 }
-
-.terminal-prompt {
+.contact-info p {
+  font-size: 1.6rem;
+  opacity: 0.8;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.contact-info .info-item {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
-.prompt-user {
-  color: #27c93f;
-  font-weight: bold;
+.contact-info .info-item i {
+  font-size: 2.4rem;
+  color: var(--main-color);
 }
-.terminal-input {
-  flex-grow: 1;
-  background: none;
-  border: none;
+.contact #contactForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.contact .input-field, .contact .textarea-field {
+  position: relative;
+}
+.contact .input-field.full-width, .contact .textarea-field.full-width {
+  grid-column: 1 / -1;
+}
+.contact .input-field input, .contact .textarea-field textarea {
+  width: 100%;
+  padding: 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   color: var(--text-color);
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
 }
-.terminal-input:focus {
-  outline: none;
+.contact .input-field label, .contact .textarea-field label {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.6rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.contact .input-field input:focus, .contact .textarea-field textarea:focus {
+  border-color: var(--main-color);
+  background: rgba(0, 212, 255, 0.1);
+}
+.contact .input-field input:focus + label,
+.contact .input-field input:not(:placeholder-shown) + label,
+.contact .textarea-field textarea:focus + label,
+.contact .textarea-field textarea:not(:placeholder-shown) + label {
+  top: -1rem;
+  left: 1rem;
+  font-size: 1.2rem;
+  color: var(--main-color);
+  background: var(--second-bg-color); /* Utilisation d'une variable pour le fond */
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+.contact .textarea-field textarea {
+  resize: none;
+  height: 150px;
+}
+.contact .textarea-field label {
+  top: 1.5rem;
+  transform: none;
+}
+.contact .textarea-field textarea:focus + label,
+.contact .textarea-field textarea:not(:placeholder-shown) + label {
+  top: -1rem;
+}
+.contact .btn-box {
+  grid-column: 1 / -1;
+  text-align: right;
+  margin-bottom: 0;
+}
+.contact .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+/* =================================================================== */
+/*   4. ANIMATIONS (KEYFRAMES)                                         */
+/* =================================================================== */
+
+@keyframes rotate-border {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes rotate {
+  from { transform: rotateY(0); }
+  to { transform: rotateY(360deg); }
+}
+
+@keyframes floatImage {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-2.4rem); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* =================================================================== */
+/*   5. RESPONSIVE DESIGN & MEDIA QUERIES                              */
+/* =================================================================== */
+
+/* --- Accessibilité: Réduire les animations --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Breakpoint: 1200px (Grands écrans) --- */
+@media (max-width: 1200px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+/* --- Breakpoint: 991px (Tablettes) --- */
+@media (max-width: 991px) {
+  .header {
+    padding: 2rem 3%;
+  }
+  section {
+    padding: 10rem 3% 2rem;
+  }
+  .projets {
+    padding-bottom: 7rem;
+  }
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  .footer {
+    padding: 2rem 3%;
+  }
+
+  /* Compétences animées (3D) */
+  .animated-skills .inner {
+    width: 25rem;
+    height: 25rem;
+  }
+  .animated-skills .card {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
+  }
+  .animated-skills .card:hover {
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
+  }
+
+  .terminal-window {
+    height: 450px;
+  }
+}
+
+/* --- Breakpoint: 768px (Mobiles) --- */
+@media (max-width: 768px) {
+  /* Menu Burger */
+  #menu-icon, .menu-toggle {
+    display: block;
+  }
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    padding: 1rem 3%;
+    background: var(--bg-color);
+    border-top: .1rem solid rgba(0,0,0,.2);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+    transition: left .25s ease;
+  }
+  .navbar.active {
+    left: 0;
+  }
+  .navbar a {
+    display: block;
+    font-size: 2rem;
+    margin: 3rem 0;
+  }
+
+  /* Section Home */
+  .home {
+    flex-direction: column-reverse;
+    gap: 2rem;
+    padding-top: 5rem;
+    text-align: center;
+  }
+  .home-content h1 { font-size: 5rem; }
+  .home-content h3 { font-size: 2.6rem; }
+  .home-content .btn-box,
+  .home-content .home-sci {
+    justify-content: center;
+  }
+  .home-img {
+    width: 25rem;
+    height: 25rem;
+    margin-top: 2rem;
+  }
+  
+  /* Section About */
+  .about {
+    flex-direction: column-reverse;
+  }
+
+  /* Section Projets */
+  .projets-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Section Contact */
+  .contact #contactForm {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Compétences animées (passage au défilement infini) */
+  .animated-skills .heading { margin-bottom: 4rem; }
+  .animated-skills .container { height: auto; padding: 2rem 0; }
+  .animated-skills .wrapper {
+    perspective: none;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+  .animated-skills .inner {
+    position: static;
+    width: max-content;
+    transform-style: flat;
+    animation: marquee-scroll 40s linear infinite;
+    display: flex;
+    gap: 2rem;
+  }
+  .animated-skills .wrapper:hover .inner {
+    animation-play-state: paused;
+  }
+  .animated-skills .card {
+    position: static;
+    /* !important est nécessaire pour écraser le style en ligne généré par les variables CSS */
+    transform: none !important; 
+    width: 18rem;
+    height: 18rem;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+    opacity: 1;
+    animation: none;
+  }
+  .animated-skills .card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
+  }
+  .animated-skills .card img { height: 40%; }
+  .animated-skills .card span { font-size: 1.6rem; }
+
+  /* Timeline */
+  .timeline-items::before { left: 1rem; }
+  .timeline-item { justify-content: flex-start; }
+  .timeline-icon { left: 1rem; }
+  .timeline-content { width: calc(100% - 4rem); margin-left: 4rem; margin-right: 0; }
+  .timeline-item:nth-child(even) .timeline-content,
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin-left: 4rem;
+  }
+  .timeline-content::before {
+    left: -1.5rem;
+    border-width: 0.8rem 1.5rem 0.8rem 0;
+    border-color: transparent rgba(0, 212, 255, 0.1) transparent transparent;
+  }
+  .timeline-item:nth-child(odd) .timeline-content::before {
+    right: auto;
+  }
+}
+
+/* --- Breakpoint: 450px (Petits mobiles) --- */
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+/* --- Breakpoint: 371px (Très petits mobiles) --- */
+@media (max-width: 371px) {
+  .footer {
+    flex-direction: column-reverse;
+  }
+  .footer p {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .home {
+    padding-top: 10rem;
+  }
+  .home-content h1 {
+    font-size: 4rem;
+  }
+  .home-img {
+    width: 25rem;
+    height: 25rem;
+    margin-top: 2rem;
+  }
+
+  .animated-skills .card {
+    width: 15rem;
+    height: 15rem;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .animated-skills .card img { height: 45%; }
+  .animated-skills .card span { font-size: 1.4rem; }
+  .animated-skills .inner { gap: 1.5rem; }
+  
+  .timeline-content {
+      padding: 1.5rem 2rem;
+  }
+  
+  .terminal-section {
+    padding: 10rem 0 4rem;
+  }
+  .terminal-window {
+    border-radius: 0;
+    height: 60vh;
+  }
 }
