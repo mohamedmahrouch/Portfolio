@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupNavigation();
         setupScrollEffects();
         setupIntersectionObserver();
+        setupNavScrollSpy();
         setupTypingAnimation();
         setupParticleCanvas();
         setupInfiniteScroller();
@@ -38,7 +39,42 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('active');
         };
     }
+    function setupNavScrollSpy() {
+        const sections = document.querySelectorAll('section[id]'); // On ne prend que les sections qui ont un ID
+        if (sections.length === 0) return;
 
+        const observerOptions = {
+            root: null, // observe par rapport au viewport
+            rootMargin: '0px',
+            // Le lien devient actif quand 70% de la section est visible.
+            // Ajustez cette valeur (entre 0.0 et 1.0) si nécessaire.
+            threshold: 0.7 
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                // Si la section est visible (selon le threshold)
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.getAttribute('id');
+                    const activeLink = document.querySelector(`.navbar a[href="#${sectionId}"]`);
+                    
+                    // On enlève 'active' de tous les liens
+                    document.querySelectorAll('.navbar a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+
+                    // On ajoute 'active' au bon lien
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+    }
     /**
      * Gère les effets visuels liés au défilement (header "sticky" et bouton "scroll-to-top").
      */
