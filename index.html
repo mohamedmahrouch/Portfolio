@@ -406,7 +406,10 @@
           <p>+212 6 00 00 00 00</p>
         </div>
       </div>
-      <form id="contactForm">
+      <!-- Code MODIFIÉ -->
+<form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="81688fc6-7b93-4a9a-ac03-1ed9d7e60efa">
+  <input type="hidden" name="redirect" value="https://mohamedmahrouch.github.io/Portfolio/merci.html">
         <div class="input-field">
           <input type="text" id="fullName" name="fullName" placeholder=" " required>
           <label for="fullName">Nom complet</label>
