@@ -1016,6 +1016,9 @@ section {
 
 /* --- Version Téléphone : On passe au défilement horizontal --- */
 @media (max-width: 768px) {
+  .terminal-window {
+  height: 450px; /* Un peu moins haut sur tablette/mobile */
+}
   .animated-skills .heading {
     margin-bottom: 4rem;
   }
@@ -1425,7 +1428,18 @@ section {
   .animated-skills .card img { height: 40%; }
   .animated-skills .card span { font-size: 1.6rem; }
 }
-
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+  .terminal-window {
+  border-radius: 0; /* Prend tout l'écran */
+  height: 60vh;
+}
+.terminal-section {
+  padding: 10rem 0 4rem;
+}
+}
 /* --- Version Très Petits Téléphones : On affine la taille --- */
 @media (max-width: 371px) {
   .animated-skills .card {
@@ -1437,4 +1451,117 @@ section {
   .animated-skills .card img { height: 45%; }
   .animated-skills .card span { font-size: 1.4rem; }
   .animated-skills .inner { gap: 1.5rem; }
+}
+/* --- STYLES POUR LA SECTION TERMINAL CMD --- */
+.terminal-section {
+  min-height: auto;
+  padding: 10rem 9% 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.terminal-window {
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  background: rgba(20, 20, 35, 0.9);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.btn-term {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+}
+.btn-term.close { background: #ff5f56; }
+.btn-term.minimize { background: #ffbd2e; }
+.btn-term.expand { background: #27c93f; }
+
+.terminal-title {
+  color: #ccc;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+.terminal-body {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+.terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.5);
+  border-radius: 4px;
+}
+
+#terminalOutput .terminal-line {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+#terminalOutput .command-line {
+  color: #888;
+}
+#terminalOutput .output-line {
+  color: var(--text-color);
+}
+#terminalOutput .output-line.success {
+  color: #27c93f;
+}
+#terminalOutput .output-line.error {
+  color: #ff5f56;
+}
+#terminalOutput .output-line.info {
+  color: var(--main-color);
+}
+
+.terminal-prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.prompt-user {
+  color: #27c93f;
+  font-weight: bold;
+}
+.terminal-input {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.4rem;
+}
+.terminal-input:focus {
+  outline: none;
 }
