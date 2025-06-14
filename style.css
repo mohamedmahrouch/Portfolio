@@ -1125,7 +1125,7 @@ section {
   
   /* Section About */
   .about {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   /* Section Projets */
