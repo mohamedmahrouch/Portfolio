@@ -1138,44 +1138,52 @@ section {
     grid-template-columns: 1fr;
   }
   
-  /* Compétences animées (passage au défilement infini) */
-  .animated-skills .heading { margin-bottom: 4rem; }
-  .animated-skills .container { height: auto; padding: 2rem 0; }
-  .animated-skills .wrapper {
-    perspective: none;
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  }
-  .animated-skills .inner {
-    position: static;
-    width: max-content;
-    transform-style: flat;
-    animation: marquee-scroll 40s linear infinite;
-    display: flex;
-    gap: 2rem;
-  }
-  .animated-skills .wrapper:hover .inner {
-    animation-play-state: paused;
-  }
-  .animated-skills .card {
-    position: static;
-    /* !important est nécessaire pour écraser le style en ligne généré par les variables CSS */
-    transform: none !important; 
-    width: 18rem;
-    height: 18rem;
-    border-radius: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex-shrink: 0;
-    opacity: 1;
-    animation: none;
-  }
-  .animated-skills .card:hover {
-    transform: translateY(-10px) !important;
-    box-shadow: 0 10px 25px rgba(var(--color-card), 0.7);
-  }
-  .animated-skills .card img { height: 40%; }
-  .animated-skills .card span { font-size: 1.6rem; }
+/* NOUVELLE VERSION : Rotation 3D sur mobile */
+.animated-skills .container {
+  /* On s'assure qu'il y a assez de place en hauteur */
+  height: 60rem; 
+}
+
+.animated-skills .wrapper {
+  /* On garde la perspective 3D */
+  perspective: 1000px; 
+}
+
+.animated-skills .inner {
+  /* On réactive l'animation de rotation */
+  animation: rotate 35s linear infinite;
+  
+  /* On réduit la taille du cercle pour qu'il tienne sur l'écran */
+  width: 20rem;
+  height: 20rem;
+}
+
+.animated-skills .card {
+  /* On réinitialise la transformation 3D des cartes */
+  /* C'est la valeur la plus importante à ajuster ! */
+  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(22rem);
+  
+  /* On s'assure que les transitions fonctionnent toujours */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.animated-skills .card:hover {
+  /* On ajuste l'effet de survol pour la nouvelle taille */
+  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(25rem) scale(1.1);
+  box-shadow: 0 0 35px rgba(var(--color-card), 1),
+              inset 0 0 25px rgba(var(--color-card), 0.7);
+  z-index: 10;
+}
+
+/* On ajuste la taille du contenu dans les cartes plus petites */
+.animated-skills .card img {
+  height: 40%;
+  max-height: 8rem;
+}
+
+.animated-skills .card span {
+  font-size: 1.6rem;
+}
 
   /* Timeline */
   .timeline-items::before { left: 1rem; }
