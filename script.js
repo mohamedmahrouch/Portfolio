@@ -16,8 +16,28 @@ document.addEventListener('DOMContentLoaded', () => {
         setupParticleCanvas();
         setupInfiniteScroller();
         setupInteractiveTerminal();
+        logVisitorActivity();
     }
+    function logVisitorActivity() {
+        // REMPLACEZ CECI par l'URL réelle de votre fichier PHP hébergé
+        const url = 'https://mohamedmahrouch.github.io/log_visitor.php';
 
+        // fetch() envoie une requête en arrière-plan à votre script PHP.
+        // L'utilisateur ne voit rien.
+        fetch(url)
+            .then(response => {
+                // On vérifie si le serveur a bien répondu
+                if (!response.ok) {
+                    console.error('La réponse du serveur n\'est pas OK');
+                }
+                // On ne fait rien de plus, l'appel est suffisant.
+                console.log('Visite enregistrée avec succès.');
+            })
+            .catch(error => {
+                // S'il y a une erreur réseau (ex: le serveur est hors ligne)
+                console.error('Erreur lors de l\'appel au script de log:', error);
+            });
+    }
     /**
      * Configure la navigation : menu burger et fermeture du menu.
      */
