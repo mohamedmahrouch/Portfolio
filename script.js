@@ -329,11 +329,9 @@ document.addEventListener('DOMContentLoaded', () => {
                        contact
                        clear`,
             'about': "Je suis Mohamed MAHROUCH, un développeur Fullstack et étudiant en cycle d'ingénieur. Passionné par la résolution de problèmes et la création d'applications web performantes.",
-            'skills': "Mes compétences incluent :<br>- Langages : Golang, Java, Python, JavaScript/TypeScript<br>- Backend : NestJS, Gin, Laravel<br>- Frontend : React, Next.js, HTML5, CSS3<br>- Bases de données : PostgreSQL, MySQL<br>- Outils : Docker, Git, Postman",
+            'skills': "Mes compétences incluent :- Langages : Golang, Java, Python, JavaScript/TypeScript- Backend : NestJS, Gin, Laravel- Frontend : React, Next.js, HTML5, CSS3- Bases de données : PostgreSQL, MySQL- Outils : Docker, Git, Postman",
             'projects': "Vous pouvez voir mes projets dans la section dédiée. Quelques exemples notables incluent un système de gestion de location et ce portfolio lui-même !",
-            'contact': "Vous pouvez me contacter via le formulaire ou directement par email à :
-                <a href='mailto:mohamedmahrouch551@gmail.com' class='info'>mohamedmahrouch551@gmail.com</a>
-                ",
+            'contact': "Vous pouvez me contacter via le formulaire ou directement par email à :<a href='mailto:mohamedmahrouch551@gmail.com' class='info'>mohamedmahrouch551@gmail.com</a>",
             'clear': ""
         };
 
