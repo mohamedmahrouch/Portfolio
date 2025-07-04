@@ -1,12 +1,6 @@
-/**
- * Attend que le contenu du DOM soit entièrement chargé avant d'exécuter les scripts.
- * C'est le point d'entrée principal de notre application.
- */
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    /**
-     * Fonction principale qui initialise tous les modules de la page.
-     */
     function init() {
         setupNavigation();
         setupScrollEffects();
@@ -18,72 +12,45 @@ document.addEventListener('DOMContentLoaded', () => {
         setupInteractiveTerminal();
         logVisitorActivity();
     }
-    function logVisitorActivity() {
-        // REMPLACEZ CECI par l'URL réelle de votre fichier PHP hébergé
-        const url = 'https://mohamedmahrouch.github.io/log_visitor.php';
 
-        // fetch() envoie une requête en arrière-plan à votre script PHP.
-        // L'utilisateur ne voit rien.
-        fetch(url)
-            .then(response => {
-                // On vérifie si le serveur a bien répondu
-                if (!response.ok) {
-                    console.error('La réponse du serveur n\'est pas OK');
-                }
-                // On ne fait rien de plus, l'appel est suffisant.
-                console.log('Visite enregistrée avec succès.');
-            })
-            .catch(error => {
-                // S'il y a une erreur réseau (ex: le serveur est hors ligne)
-                console.error('Erreur lors de l\'appel au script de log:', error);
-            });
-    }
-    /**
-     * Configure la navigation : menu burger et fermeture du menu.
-     */
     function setupNavigation() {
         const menuIcon = document.querySelector('#menu-icon');
         const navbar = document.querySelector('.navbar');
 
         if (!menuIcon || !navbar) return;
 
-        // Gère le clic sur l'icône du menu pour ouvrir/fermer la navbar
         menuIcon.addEventListener('click', () => {
             menuIcon.classList.toggle('bx-x');
             navbar.classList.toggle('active');
         });
 
-        // Fonction pour fermer le menu (utilisée lors du défilement)
         window.closeMobileMenu = () => {
             menuIcon.classList.remove('bx-x');
             navbar.classList.remove('active');
         };
     }
     function setupNavScrollSpy() {
-        const sections = document.querySelectorAll('section[id]'); // On ne prend que les sections qui ont un ID
+        const sections = document.querySelectorAll('section[id]'); 
         if (sections.length === 0) return;
 
         const observerOptions = {
-            root: null, // observe par rapport au viewport
+            root: null, 
             rootMargin: '0px',
-            // Le lien devient actif quand 70% de la section est visible.
-            // Ajustez cette valeur (entre 0.0 et 1.0) si nécessaire.
+
             threshold: 0.7 
         };
 
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
-                // Si la section est visible (selon le threshold)
+
                 if (entry.isIntersecting) {
                     const sectionId = entry.target.getAttribute('id');
                     const activeLink = document.querySelector(`.navbar a[href="#${sectionId}"]`);
-                    
-                    // On enlève 'active' de tous les liens
+
                     document.querySelectorAll('.navbar a').forEach(link => {
                         link.classList.remove('active');
                     });
 
-                    // On ajoute 'active' au bon lien
                     if (activeLink) {
                         activeLink.classList.add('active');
                     }
@@ -95,26 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sections.forEach(section => observer.observe(section));
     }
-    /**
-     * Gère les effets visuels liés au défilement (header "sticky" et bouton "scroll-to-top").
-     */
+
     function setupScrollEffects() {
         const header = document.querySelector('.header');
         const scrollTopBtn = document.getElementById('scrollTopBtn');
 
         if (!header || !scrollTopBtn) return;
 
-        // Centralise la logique de défilement pour de meilleures performances.
+
         const handleScroll = () => {
             const scrollY = window.scrollY;
 
-            // Rend le header "sticky" après un certain défilement
+
             header.classList.toggle('sticky', scrollY > 100);
 
-            // Affiche le bouton "scroll-to-top" après 400px de défilement
             scrollTopBtn.classList.toggle('visible', scrollY > 400);
 
-            // Ferme le menu mobile si l'utilisateur commence à défiler
             if (typeof window.closeMobileMenu === 'function') {
                 window.closeMobileMenu();
             }
@@ -123,14 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', handleScroll);
     }
 
-    /**
-     * Configure l'IntersectionObserver pour animer les sections et les barres de compétences lorsqu'elles deviennent visibles.
-     */
+
     function setupIntersectionObserver() {
         const sectionsToAnimate = document.querySelectorAll('section');
         if (sectionsToAnimate.length === 0) return;
 
-        // Fonction pour animer les barres de compétences
+
         const animateSkillBars = () => {
             const skillBars = document.querySelectorAll('.skills-content .progress span');
             skillBars.forEach(span => {
@@ -143,25 +104,22 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('show-animate');
-                    // Si la section "skills" est visible, on anime les barres.
+
                     if (entry.target.id === 'skills') {
                         animateSkillBars();
                     }
                 } else {
-                    // Optionnel : réinitialise l'animation quand l'élément n'est plus visible
-                    // entry.target.classList.remove('show-animate');
+
                 }
             });
         }, {
-            threshold: 0.1 // L'animation se déclenche quand 10% de l'élément est visible
+            threshold: 0.1
         });
 
         sectionsToAnimate.forEach(sec => observer.observe(sec));
     }
 
-    /**
-     * Initialise l'animation de machine à écrire pour le titre dynamique.
-     */
+
     function setupTypingAnimation() {
         const typingElement = document.querySelector('.text-animate h3');
         if (!typingElement) return;
@@ -196,9 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         typeLoop();
     }
 
-    /**
-     * Configure et anime le fond de particules interactif avec le canvas.
-     */
     function setupParticleCanvas() {
         const canvas = document.getElementById('canvas-bg');
         if (!canvas) return;
