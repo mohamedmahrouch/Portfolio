@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!terminalBody || !terminalInput || !terminalOutput) return;
 
         const commands = {
-            'help': `Commandes disponibles:<br>
+            'help': `Commandes disponibles:
                        about
                        skills
                        projects
