@@ -1107,7 +1107,7 @@ section {
     font-size: 0.95rem;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .navbar a {
     font-size: 0.80rem;
   }
@@ -1290,5 +1290,6 @@ section {
     height: 60vh;
   }
 }
+
 
 
