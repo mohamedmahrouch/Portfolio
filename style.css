@@ -1022,30 +1022,34 @@ section {
   to { transform: translateX(-50%); }
 }
 
-/* =================================================================== */
-/*   5. RESPONSIVE DESIGN & MEDIA QUERIES                              */
-/* =================================================================== */
-
-/* --- Accessibilité: Réduire les animations --- */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
 /* --- Breakpoint: 1400px (Très grands écrans) --- */
 @media (max-width: 1400px) {
   .navbar a {
     font-size: 1.5rem;
   }
 }
-@media (max-width: 1300) {
+
+/* --- Breakpoint: 1350px --- */
+@media (max-width: 1350px) {
+  .navbar a {
+    font-size: 1.45rem;
+  }
+}
+
+/* --- Breakpoint: 1300px --- */
+@media (max-width: 1300px) {
   .navbar a {
     font-size: 1.4rem;
   }
 }
+
+/* --- Breakpoint: 1250px --- */
+@media (max-width: 1250px) {
+  .navbar a {
+    font-size: 1.35rem;
+  }
+}
+
 /* --- Breakpoint: 1200px (Grands écrans) --- */
 @media (max-width: 1200px) {
   .navbar a {
@@ -1056,10 +1060,24 @@ section {
   }
 }
 
+/* --- Breakpoint: 1150px --- */
+@media (max-width: 1150px) {
+  .navbar a {
+    font-size: 1.25rem;
+  }
+}
+
 /* --- Breakpoint: 1100px --- */
 @media (max-width: 1100px) {
   .navbar a {
     font-size: 1.2rem;
+  }
+}
+
+/* --- Breakpoint: 1050px --- */
+@media (max-width: 1050px) {
+  .navbar a {
+    font-size: 1.15rem;
   }
 }
 
@@ -1101,17 +1119,34 @@ section {
   }
 }
 
-/* --- Breakpoint: 850px --- */
-@media (max-width: 850px) {
+/* --- Breakpoint: 900px --- */
+@media (max-width: 900px) {
   .navbar a {
     font-size: 0.95rem;
   }
 }
+
+/* --- Breakpoint: 850px --- */
+@media (max-width: 850px) {
+  .navbar a {
+    font-size: 0.90rem;
+  }
+}
+
+/* --- Breakpoint: 800px --- */
 @media (max-width: 800px) {
+  .navbar a {
+    font-size: 0.85rem;
+  }
+}
+
+/* --- Breakpoint: 770px --- */
+@media (max-width: 770px) {
   .navbar a {
     font-size: 0.80rem;
   }
 }
+
 
 /* --- Breakpoint: 768px (Mobiles) --- */
 @media (max-width: 768px) {
@@ -1290,6 +1325,7 @@ section {
     height: 60vh;
   }
 }
+
 
 
 
