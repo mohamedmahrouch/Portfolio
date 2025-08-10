@@ -1038,6 +1038,9 @@ section {
 
 /* --- Breakpoint: 1200px (Grands écrans) --- */
 @media (max-width: 1200px) {
+    .navbar a {
+    font-size: 1.6rem;
+  }
   html {
     font-size: 55%;
   }
@@ -1045,6 +1048,9 @@ section {
 
 /* --- Breakpoint: 991px (Tablettes) --- */
 @media (max-width: 991px) {
+    .navbar a {
+    font-size: 1.5rem;
+  }
   .header {
     padding: 2rem 3%;
   }
@@ -1100,7 +1106,7 @@ section {
   }
   .navbar a {
     display: block;
-    font-size: 2rem;
+    font-size: 1.4 rem;
     margin: 3rem 0;
   }
 
@@ -1255,3 +1261,4 @@ section {
     height: 60vh;
   }
 }
+
