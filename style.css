@@ -1025,35 +1025,35 @@ section {
 /* --- Breakpoint: 1400px (Très grands écrans) --- */
 @media (max-width: 1400px) {
   .navbar a {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 
 /* --- Breakpoint: 1350px --- */
 @media (max-width: 1350px) {
   .navbar a {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
   }
 }
 
 /* --- Breakpoint: 1300px --- */
 @media (max-width: 1300px) {
   .navbar a {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
 
 /* --- Breakpoint: 1250px --- */
 @media (max-width: 1250px) {
   .navbar a {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
 }
 
 /* --- Breakpoint: 1200px (Grands écrans) --- */
 @media (max-width: 1200px) {
   .navbar a {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   html {
     font-size: 55%;
@@ -1063,21 +1063,21 @@ section {
 /* --- Breakpoint: 1150px --- */
 @media (max-width: 1150px) {
   .navbar a {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 }
 
 /* --- Breakpoint: 1100px --- */
 @media (max-width: 1100px) {
   .navbar a {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
 /* --- Breakpoint: 1050px --- */
 @media (max-width: 1050px) {
   .navbar a {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
   }
 }
 
@@ -1325,6 +1325,7 @@ section {
     height: 60vh;
   }
 }
+
 
 
 
