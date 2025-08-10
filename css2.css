@@ -522,14 +522,13 @@ section {
   place-content: center;
   overflow: hidden;
   min-height: 100vh;
-  padding: 5rem 0;
 }
 .animated-skills .container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 65rem;
+  height: 60rem;
 }
 .animated-skills .wrapper {
   position: relative;
@@ -538,15 +537,15 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 2500px;
+  perspective: 2000px;
 }
 .animated-skills .inner {
   position: absolute;
-  width: 32rem;
-  height: 32rem;
+  width: 30rem;
+  height: 30rem;
   border-radius: 50%;
   transform-style: preserve-3d;
-  animation: rotate 40s linear infinite;
+  animation: rotate 35s linear infinite;
 }
 .animated-skills .card {
   position: absolute;
@@ -555,52 +554,34 @@ section {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  padding: 2.5rem;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.9);
   transform-origin: 50% 50%;
-  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(45rem);
-  box-shadow: 
-    0 0 25px rgba(var(--color-card), 0.8), 
-    inset 0 0 20px rgba(var(--color-card), 0.3),
-    0 8px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.3s ease;
+  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(40rem);
+  box-shadow: 0 0 20px rgba(var(--color-card), 0.8), inset 0 0 15px rgba(var(--color-card), 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 .animated-skills .card:hover {
-  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(52rem) scale(1.15);
-  box-shadow: 
-    0 0 40px rgba(var(--color-card), 1), 
-    inset 0 0 30px rgba(var(--color-card), 0.5),
-    0 15px 50px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.1);
+  transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(45rem) scale(1.1);
+  box-shadow: 0 0 35px rgba(var(--color-card), 1), inset 0 0 25px rgba(var(--color-card), 0.7);
   z-index: 10;
 }
 .animated-skills .card img {
-  height: 45%;
-  max-height: 9rem;
+  height: 50%;
+  max-height: 10rem;
   object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-  transition: transform 0.3s ease;
-}
-.animated-skills .card:hover img {
-  transform: scale(1.1);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
 }
 .animated-skills .card span {
   font-size: 2rem;
   font-weight: 700;
   color: #111;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: color 0.3s ease;
-}
-.animated-skills .card:hover span {
-  color: #000;
 }
 
 /* --- Section: Projets --- */
@@ -1117,26 +1098,26 @@ section {
 
   /* Technologies animées (3D) - Tablette */
   .animated-skills .container {
-    height: 60rem;
+    height: 55rem;
   }
   
   .animated-skills .inner {
-    width: 28rem;
-    height: 28rem;
+    width: 25rem;
+    height: 25rem;
   }
   
   .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem);
-    padding: 2rem;
-    gap: 1.5rem;
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
+    padding: 1.5rem;
+    gap: 1rem;
   }
   
   .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(42rem) scale(1.12);
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.1);
   }
   
   .animated-skills .card img {
-    max-height: 8.5rem;
+    max-height: 8rem;
   }
   
   .animated-skills .card span {
@@ -1280,34 +1261,34 @@ section {
   
   /* Technologies animées (3D) - Mobile amélioré */
   .animated-skills .container {
-    height: 55rem;
+    height: 50rem;
     padding: 2rem;
   }
   
   .animated-skills .wrapper {
-    perspective: 1500px;
+    perspective: 1200px;
   }
   
   .animated-skills .inner {
-    width: 25rem;
-    height: 25rem;
-    animation: rotate 45s linear infinite;
+    width: 22rem;
+    height: 22rem;
+    animation: rotate 40s linear infinite;
   }
   
   .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(30rem);
-    padding: 1.8rem;
-    gap: 1.2rem;
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(25rem);
+    padding: 1.2rem;
+    gap: 0.8rem;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
   }
   
   .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(35rem) scale(1.08);
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(28rem) scale(1.05);
   }
   
   .animated-skills .card img {
     height: 45%;
-    max-height: 7.5rem;
+    max-height: 7rem;
   }
   
   .animated-skills .card span {
@@ -1403,26 +1384,26 @@ section {
   
   /* Technologies animées - Petits mobiles */
   .animated-skills .container {
-    height: 50rem;
+    height: 45rem;
   }
   
   .animated-skills .inner {
-    width: 23rem;
-    height: 23rem;
+    width: 20rem;
+    height: 20rem;
   }
   
   .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(28rem);
-    padding: 1.5rem;
-    gap: 1rem;
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(22rem);
+    padding: 1rem;
+    gap: 0.6rem;
   }
   
   .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(32rem) scale(1.06);
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(24rem) scale(1.05);
   }
   
   .animated-skills .card img {
-    max-height: 6.5rem;
+    max-height: 6rem;
   }
   
   .animated-skills .card span {
@@ -1463,26 +1444,26 @@ section {
   
   /* Technologies animées - Très petits mobiles */
   .animated-skills .container {
-    height: 45rem;
+    height: 40rem;
   }
   
   .animated-skills .inner {
-    width: 21rem;
-    height: 21rem;
+    width: 18rem;
+    height: 18rem;
   }
   
   .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(26rem);
-    padding: 1.2rem;
-    gap: 0.8rem;
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(20rem);
+    padding: 0.8rem;
+    gap: 0.4rem;
   }
   
   .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(29rem) scale(1.05);
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(22rem) scale(1.05);
   }
   
   .animated-skills .card img {
-    max-height: 5.5rem;
+    max-height: 5rem;
   }
   
   .animated-skills .card span {
@@ -1521,27 +1502,27 @@ section {
 
   /* Technologies animées - Ultra petits mobiles */
   .animated-skills .container {
-    height: 42rem;
+    height: 35rem;
     padding: 1rem;
   }
   
   .animated-skills .inner {
-    width: 19rem;
-    height: 19rem;
+    width: 16rem;
+    height: 16rem;
   }
   
   .animated-skills .card {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(24rem);
-    padding: 1rem;
-    gap: 0.6rem;
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(18rem);
+    padding: 0.6rem;
+    gap: 0.3rem;
   }
   
   .animated-skills .card:hover {
-    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(27rem) scale(1.05);
+    transform: rotateY(calc(var(--index) * (360deg / var(--quantity)))) translateZ(20rem) scale(1.05);
   }
   
   .animated-skills .card img {
-    max-height: 5rem;
+    max-height: 4rem;
   }
   
   .animated-skills .card span {
