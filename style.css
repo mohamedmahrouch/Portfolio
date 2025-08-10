@@ -115,7 +115,7 @@ body {
 }
 
 .navbar a {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   color: var(--text-color);
   font-weight: 500;
   margin-left: 3.5rem;
@@ -1035,21 +1035,38 @@ section {
     scroll-behavior: auto !important;
   }
 }
-
+/* --- Breakpoint: 1400px (Très grands écrans) --- */
+@media (max-width: 1400px) {
+  .navbar a {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 1300) {
+  .navbar a {
+    font-size: 1.4rem;
+  }
+}
 /* --- Breakpoint: 1200px (Grands écrans) --- */
 @media (max-width: 1200px) {
-    .navbar a {
-    font-size: 1.6rem;
+  .navbar a {
+    font-size: 1.3rem;
   }
   html {
     font-size: 55%;
   }
 }
 
+/* --- Breakpoint: 1100px --- */
+@media (max-width: 1100px) {
+  .navbar a {
+    font-size: 1.2rem;
+  }
+}
+
 /* --- Breakpoint: 991px (Tablettes) --- */
 @media (max-width: 991px) {
-    .navbar a {
-    font-size: 1.5rem;
+  .navbar a {
+    font-size: 1rem;
   }
   .header {
     padding: 2rem 3%;
@@ -1083,6 +1100,14 @@ section {
     height: 450px;
   }
 }
+
+/* --- Breakpoint: 850px --- */
+@media (max-width: 850px) {
+  .navbar a {
+    font-size: 0.95rem;
+  }
+}
+
 
 /* --- Breakpoint: 768px (Mobiles) --- */
 @media (max-width: 768px) {
